@@ -15,21 +15,19 @@ const ErrorResponse:TErrorResponse = (res, statusCode, message)=>{
     description: message,
   } });
 }
-
-// class HttpError extends Error {
-//   statusCode: number;
-
-//   constructor(message: string, statusCode: number) {
-//     super(message);
-//     this.name = 'HttpError';
-//     this.statusCode = statusCode;
-//   }
-// }
-
-// Example of throwing an error with a status code
+// Custom throw Error
+class AppError {
+  message: string;
+  status: number;
+  constructor(message: string, status: number) {
+    this.message = message;
+    this.status = status;
+  }
+}
 
 
-export { ErrorResponse, SuccessResponse };
+
+export { ErrorResponse, SuccessResponse,AppError };
 
 
 

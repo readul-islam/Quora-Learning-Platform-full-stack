@@ -1,4 +1,4 @@
-import {SuccessResponse, ErrorResponse} from './common.handler';
+import {SuccessResponse, ErrorResponse} from '../utils/common.handler';
 import { notFound, globalErrorHandler } from './error.handler';
 
 
