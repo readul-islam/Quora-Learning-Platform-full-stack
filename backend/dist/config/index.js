@@ -1,0 +1,23 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.cloud_front_id = exports.my_bucket = exports.secret_access_key = exports.access_key = exports.port = exports.bcrypt_salt = exports.DB_URL = void 0;
+const dotenv_1 = __importDefault(require("dotenv"));
+const path_1 = __importDefault(require("path"));
+dotenv_1.default.config({ path: path_1.default.join(process.cwd(), ".env") });
+const port = process.env.PORT || 3000;
+exports.port = port;
+const DB_URL = process.env.DB_URL;
+exports.DB_URL = DB_URL;
+const bcrypt_salt = 10;
+exports.bcrypt_salt = bcrypt_salt;
+const access_key = process.env.ACCESS_KEY;
+exports.access_key = access_key;
+const secret_access_key = process.env.SECRET_ACCESS_KEY;
+exports.secret_access_key = secret_access_key;
+const my_bucket = process.env.MY_BUCKET;
+exports.my_bucket = my_bucket;
+const cloud_front_id = process.env.CLOUD_FRONT_ID;
+exports.cloud_front_id = cloud_front_id;
