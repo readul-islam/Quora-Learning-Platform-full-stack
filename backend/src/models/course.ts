@@ -30,7 +30,7 @@ const syllabusSchema = new Schema<TSyllabus>({
     required: [true, "description is required"],
   },
   videos: {
-    type: videoSchema,
+    type: [videoSchema],
   },
 });
 
@@ -58,7 +58,7 @@ const courseSchema = new Schema<TCourse>({
     require: [true, "Pre-requisites is required"],
   },
   syllabus: {
-    type: syllabusSchema,
+    type: [syllabusSchema],
     required: [true, "Syllabus is required"],
   },
   totalReaction: {

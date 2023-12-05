@@ -25,7 +25,7 @@ const syllabusSchema = new mongoose_1.Schema({
         required: [true, "description is required"],
     },
     videos: {
-        type: videoSchema,
+        type: [videoSchema],
     },
 });
 const courseSchema = new mongoose_1.Schema({
@@ -52,7 +52,7 @@ const courseSchema = new mongoose_1.Schema({
         require: [true, "Pre-requisites is required"],
     },
     syllabus: {
-        type: syllabusSchema,
+        type: [syllabusSchema],
         required: [true, "Syllabus is required"],
     },
     totalReaction: {

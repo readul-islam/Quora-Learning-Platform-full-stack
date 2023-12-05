@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import CustomAccordion from "./CustomAccordion";
 import { isEmpty } from "lodash";
 
-const CourseContent = () => {
+const CourseContent = ({ courseDetails }) => {
   const [open, setOpen] = useState(false);
   const [courses, setCourses] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9]);
   const [countMoreSection, setCountMoreSection] = useState(0);
@@ -21,13 +21,16 @@ Learn how to use Python for real-world tasks, such as working with PDF Files, se
       setCourses(list.splice(0, 6));
     }
 
-    if (requirementData) {
-      setRequirements(requirementData.split("."));
+    if (courseDetails.preRequisites) {
+      setRequirements(courseDetails.preRequisites);
     }
-    if (descriptionData.length > 200) {
-      setDescription(descriptionData.slice(0, 200));
+    if (courseDetails?.description?.length > 200) {
+      setDescription(courseDetails.description.slice(0, 200));
       setSeeMore(true);
+    }else{
+      setDescription(courseDetails.description)
     }
+    console.log(courseDetails.description)
   }, []);
 
   const handleCountMoreSection = () => {
@@ -35,7 +38,7 @@ Learn how to use Python for real-world tasks, such as working with PDF Files, se
     setCountMoreSection(0);
   };
 
-  //   console.log(requirements)
+    console.log(requirements)
   return (
     <div>
       <div className="pb-4 pl-1">

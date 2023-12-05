@@ -7,7 +7,7 @@ type TSyllabus = {
   week: number;
   topic: string;
   description: string;
-  videos: TVideo;
+  videos: Array<TVideo>;
 };
 
 type TStatus = "Open" | "Closed" | "In Progress";
@@ -20,7 +20,7 @@ type TCourse = {
   thumbnail: string;
   introUrl: string;
   preRequisites: Array<string>;
-  syllabus: TSyllabus;
+  syllabus: Array<TSyllabus>;
   totalReaction: number;
 };
 export { TCourse, TStatus, TSyllabus, TVideo };

@@ -11,7 +11,7 @@ const routes = [
   { id: uuidv4(), path: "/", component: Home },
   { id: uuidv4(), path: "/home", component: Home },
   { id: uuidv4(), path: "/courses", component: CourseList },
-  { id: uuidv4(), path: "/course/:courseIs", component: Course },
+  { id: uuidv4(), path: "/course/:courseName/:courseId", component: Course },
   { id: uuidv4(), path: "/dashboard", component: Dashboard },
 ];
 
