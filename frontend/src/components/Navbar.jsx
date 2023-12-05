@@ -11,16 +11,16 @@ const Navbar = () => {
 
   const menus = (
     <>
-      <li className="md:mx-1">
+      <li className="md:mx-1 text-base">
         <NavLink to="/home">Home</NavLink>
       </li>
-      <li className="md:mx-1">
+      <li className="md:mx-1 text-base">
         <NavLink to="/courses">Courses</NavLink>
       </li>
-      <li className="md:mx-1">
+      <li className="md:mx-1 text-base">
         <NavLink to="/pricing">Pricing</NavLink>
       </li>
-      <li className="md:mx-1">
+      <li className="md:mx-1 text-base">
         <NavLink to="/about">About</NavLink>
       </li>
     </>
