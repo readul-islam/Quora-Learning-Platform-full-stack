@@ -10,8 +10,8 @@ const CourseList = () => {
   ];
   return (
     <>
-    <Navbar/>
-   <div className="mx-12 my-6">
+   
+   <div className="px-12 py-6 ">
    <SearchBar/>
    <p className="font-semibold text-xl mt-4 ">Courses</p>
       <div className="grid sm:grid-cols-2 lg:grid-cols-3  xl:grid-cols-5  gap-x-10 content-center gap-y-8 mt-4  ">

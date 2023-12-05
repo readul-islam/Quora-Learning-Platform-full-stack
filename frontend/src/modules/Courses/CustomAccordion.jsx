@@ -8,14 +8,18 @@ import {
   AccordionItemPanel,
 } from "react-accessible-accordion";
 import "react-accessible-accordion/dist/fancy-example.css";
-const CustomAccordion = ({data}) => {
+const CustomAccordion = ({ data }) => {
   return (
     <>
       {!isEmpty(data) ? (
-        <Accordion allowZeroExpanded={true} allowMultipleExpanded={true}>
+        <Accordion
+          className="bg-white"
+          allowZeroExpanded={true}
+          allowMultipleExpanded={true}
+        >
           {data.map((course) => (
             <>
-              <AccordionItem>
+              <AccordionItem className="border">
                 <AccordionItemHeading>
                   <AccordionItemButton>
                     What harsh truths do you prefer to ignore?

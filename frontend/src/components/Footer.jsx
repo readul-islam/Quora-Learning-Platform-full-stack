@@ -2,7 +2,8 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className="bg-gradient-to-r from-[#0D0541]/95 to-[#0D0541] text-white">
+    <div className="bg-gradient-to-r absolute w-full
+     from-[#0D0541]/95 to-[#0D0541] text-white">
       <footer className="footer p-10 ">
         <div>
           <span className="footer-title">Services</span>

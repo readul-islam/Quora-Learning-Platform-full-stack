@@ -1,8 +1,6 @@
-
 import React from "react";
 
 import { Link, NavLink, useNavigate } from "react-router-dom";
-
 
 import PrimaryBtn from "./PrimaryBtn";
 
@@ -64,7 +62,7 @@ const Navbar = () => {
           <ul className="menu menu-horizontal p-0">{menus}</ul>
         </div>
         <div className="navbar-end ">
-          {false ? (
+          {true ? (
             <Link to="/login">
               <PrimaryBtn>Sign UP</PrimaryBtn>{" "}
             </Link>
@@ -107,7 +105,10 @@ const Navbar = () => {
                   </div>
                 </div>
                 <div className="dropdown dropdown-end z-10">
-                  <label tabindex="0" className="btn btn-ghost btn-circle avatar">
+                  <label
+                    tabindex="0"
+                    className="btn btn-ghost btn-circle avatar"
+                  >
                     <div className="w-10 rounded-full">
                       <img src="https://api.lorem.space/image/face?hash=33791" />
                     </div>
@@ -121,6 +122,9 @@ const Navbar = () => {
                         Profile
                         <span className="badge">New</span>
                       </a>
+                    </li>
+                    <li>
+                      <a href="/dashboard">Dashboard</a>
                     </li>
                     <li>
                       <a>Settings</a>
