@@ -1,71 +1,41 @@
+import { useFormik } from "formik";
 import React from "react";
 import { FcGoogle } from "react-icons/fc";
-import { BsFacebook } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
-import { useFormik } from "formik";
-import * as Yup from "yup";
-// import auth from "../../firebase.init";
-// import { useCreateUserWithEmailAndPassword,useSignInWithGoogle } from 'react-firebase-hooks/auth';
-
-
+import { SIGN_UP_INITIAL_VALUES } from "../constants";
+import { SIGN_IN_FORM_VALIDATE_SCHEMA } from "../schema";
+import { registerApi } from "../api/auth";
+import { logIn } from "../../../store/authenticationSlice";
+import { useDispatch } from "react-redux";
 
 const Register = () => {
-    let navigate = useNavigate()
-    // const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
-    // const [
-    //     createUserWithEmailAndPassword,
-    //     user,
-    //     loading,
-    //     error,
-    //   ] = useCreateUserWithEmailAndPassword(auth,{sendEmailVerification:true});
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
+  const submitHandler = async (values) => {
+    try {
+      const { email, password } = values;
+      const res = await registerApi({ email, password });
+      console.log(res);
 
-    
+      dispatch(logIn(res.data.token));
+      navigate("/", { replace: true });
+    } catch (error) {
+      alert(err.response.data);
+    }
+  };
+
   const formik = useFormik({
-    initialValues: {
-      email: "",
-      password: "",
-      confirmPassword: "",
-      acceptCondition: false,
-    },
-    validationSchema: Yup.object({
-      /* (
-            
-          ); */
-      email: Yup.string()
-        .required("Please Enter your Email")
-        .matches(
-          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-          "Your email  invalid "
-        ),
-      password: Yup.string()
-        .required("Please Enter your password")
-        .matches(
-          /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-          "Must 8 Characters,Uppercase, Lowercase, Number and  Special  Character"
-        ),
-      confirmPassword: Yup.string()
-        .required("Please Enter your confrim password")
-        .oneOf([Yup.ref("password"), null], "Passwords must match"),
-      acceptCondition: Yup.boolean()
-        .required("Required")
-        .oneOf([true], "You must accept the terms and conditions."),
-    }),
-    onSubmit: async(values) => {
-        const {email,password} = values;
-       await createUserWithEmailAndPassword(email, password)
-     console.log(email);
-    },
+    initialValues: SIGN_UP_INITIAL_VALUES,
+    validationSchema: SIGN_IN_FORM_VALIDATE_SCHEMA,
+    onSubmit: submitHandler,
   });
 
-// if(gUser ||user){
-//     navigate('/home')
-// }
   return (
     <>
       <div
         style={{
-          "backgroundImage": "url(https://wallpapercave.com/wp/wp9764093.jpg)",
+          backgroundImage: "url(https://wallpapercave.com/wp/wp9764093.jpg)",
         }}
         className="hero min-h-screen  "
       >
@@ -186,7 +156,6 @@ const Register = () => {
                   </small>
                 ) : null}
                 <button
-
                   type="submit"
                   className={`w-full bg-blue-700 hover:bg-blue-800  text-white  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 uppercase`}
                 >
@@ -203,7 +172,10 @@ const Register = () => {
                 </div>
               </form>
               <div className="divider">OR</div>
-              <button onClick={()=>signInWithGoogle()} className="btn w-full btn-outline mb-4">
+              <button
+                onClick={() => signInWithGoogle()}
+                className="btn w-full btn-outline mb-4"
+              >
                 <span className="pr-4">
                   <FcGoogle size={30} />
                 </span>
@@ -212,7 +184,6 @@ const Register = () => {
                   continue with google
                 </span>
               </button>
-             
             </div>
           </div>
         </div>

@@ -8,89 +8,63 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateUserOrder = exports.updateUser = exports.removeUser = exports.getUsers = exports.getUserOrders = exports.getUser = exports.getTotalAmountOfOrders = exports.createNewUser = void 0;
-const middleware_1 = require("../../../middleware");
+exports.createNewUser = exports.authenticateUser = void 0;
 const models_1 = require("../../../models");
+const generateSignInToken_1 = __importDefault(require("../../../hooks/generateSignInToken"));
+const utils_1 = require("../../../utils");
 const user_validator_1 = __importDefault(require("../helper/user.validator"));
+const comparePassword_1 = __importDefault(require("../../../hooks/comparePassword"));
 // create a new user
-const createNewUser = (res, reqBody) => __awaiter(void 0, void 0, void 0, function* () {
+const createNewUser = (reqBody) => __awaiter(void 0, void 0, void 0, function* () {
     const result = user_validator_1.default.validate(reqBody);
-    if (yield models_1.User.isUserExists(reqBody.id)) {
-        throw new Error("User already exist!");
+    if (yield models_1.User.isUserExists(reqBody.email)) {
+        throw new utils_1.AppError("User already exist!", 400);
     }
     if (result.error) {
-        (0, middleware_1.ErrorResponse)(res, 400, result.error.message);
+        throw new utils_1.AppError(result.error.toString(), 400);
     }
     else {
         let user = yield models_1.User.create(result.value);
-        return user;
+        const _a = user.toObject(), { password } = _a, rest = __rest(_a, ["password"]);
+        return rest;
     }
 });
 exports.createNewUser = createNewUser;
-// get all user
-const getUsers = (reqBody) => __awaiter(void 0, void 0, void 0, function* () {
-    const users = yield models_1.User.find().select("username fullName email age address -_id");
-    return users;
-});
-exports.getUsers = getUsers;
-// get specific user
-const getUser = (params) => __awaiter(void 0, void 0, void 0, function* () {
-    const { userId } = params;
-    const user = yield models_1.User.findOne({ userId }).select("-password -orders -_id");
-    return user;
-});
-exports.getUser = getUser;
-// update a specific user
-const updateUser = (params, reqBody) => __awaiter(void 0, void 0, void 0, function* () {
-    const { userId } = params;
-    const user = yield models_1.User.findOneAndUpdate({ userId }, Object.assign({}, reqBody), { returnOriginal: false }).select("-password -orders -_id");
-    return user;
-});
-exports.updateUser = updateUser;
-// remove a specific user
-const removeUser = (params) => __awaiter(void 0, void 0, void 0, function* () {
-    const { userId } = params;
-    const deleteUser = yield models_1.User.deleteOne({ userId });
-    return deleteUser.deletedCount;
-});
-exports.removeUser = removeUser;
-// get specific user orders
-const getUserOrders = (params) => __awaiter(void 0, void 0, void 0, function* () {
-    const { userId } = params;
-    const orders = yield models_1.User.findOne({ userId }).select("orders -_id");
-    return orders;
-});
-exports.getUserOrders = getUserOrders;
-// update orders
-const updateUserOrder = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const { userId } = req.params;
-    const newProduct = yield models_1.User.findOneAndUpdate({ userId }, { $push: { orders: req.body } }, { returnOriginal: false }).select("orders -_id");
-    return newProduct;
-});
-exports.updateUserOrder = updateUserOrder;
-// get total amount of orders
-const getTotalAmountOfOrders = (params) => __awaiter(void 0, void 0, void 0, function* () {
-    const { userId } = params;
-    const id = parseInt(userId);
-    const calculateAmount = yield models_1.User.aggregate([
-        { $match: { userId: id } },
-        { $unwind: "$orders" },
-        {
-            $group: {
-                _id: null,
-                totalPrice: {
-                    $sum: { $multiply: ["$orders.price", "$orders.quantity"] },
+// authenticateUser for login
+const authenticateUser = (email, password) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log(email, password);
+    const user = yield models_1.User.findOne({ email });
+    if (user) {
+        const verified = (0, comparePassword_1.default)(password, user.password);
+        if (verified) {
+            const { accessToken, refreshToken } = (0, generateSignInToken_1.default)(user);
+            const _b = user.toObject(), { password } = _b, rest = __rest(_b, ["password"]);
+            return {
+                refreshToken,
+                userReturn: {
+                    user: rest,
+                    token: accessToken,
+                    refreshToken,
                 },
-            },
-        },
-        {
-            $project: { _id: 0 },
-        },
-    ]);
-    return calculateAmount[0];
+            };
+        }
+        throw new utils_1.AppError(`Incorrect password supplied for user with email address ${email}`, 404);
+    }
+    throw new utils_1.AppError(`User with ${email} not found`, 404);
 });
-exports.getTotalAmountOfOrders = getTotalAmountOfOrders;
+exports.authenticateUser = authenticateUser;

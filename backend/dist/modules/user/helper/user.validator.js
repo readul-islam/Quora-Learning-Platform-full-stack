@@ -19,21 +19,8 @@ const userAddressValidator = joi_1.default.object({
     city: joi_1.default.string().required().trim(),
     country: joi_1.default.string().required().trim(),
 });
-const userOrdersValidator = joi_1.default.object({
-    productName: joi_1.default.string().required(),
-    price: joi_1.default.number().required(),
-    quantity: joi_1.default.number().required(),
-});
 const userValidator = joi_1.default.object({
-    userId: joi_1.default.number(),
-    username: joi_1.default.string().required().trim(),
     password: joi_1.default.string().required().trim(),
-    fullName: userNameValidator.required(),
-    age: joi_1.default.number().required(),
     email: joi_1.default.string().trim().regex(emailRegex).message(emailMessage).required(),
-    isActive: joi_1.default.boolean().required(),
-    hobbies: joi_1.default.array().items(joi_1.default.string().required()).required(),
-    address: userAddressValidator.required(),
-    orders: joi_1.default.array().items(userOrdersValidator.required()),
 });
 exports.default = userValidator;

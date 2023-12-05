@@ -5,12 +5,12 @@ type TErrorResponse = (res: Response, statusCode: number, message: string) => vo
 
 // this is alternative custom handler for sending same structure data to client for successful responses
 const SuccessResponse: TSuccessResponse = (res, data, message) => {
-  res.send({ success: true, message, data });
+  res.status(200).json({ success: true, message, data });
 };
 
 // this is alternative custom handler for sending same structure data to client for error response
 const ErrorResponse:TErrorResponse = (res, statusCode, message)=>{
-  res.send({ success: false, message,error:{
+  res.status(statusCode).json({ success: false, message,error:{
     code:statusCode,
     description: message,
   } });

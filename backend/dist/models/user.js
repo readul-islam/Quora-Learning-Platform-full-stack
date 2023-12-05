@@ -19,13 +19,11 @@ const fullNameSchema = new mongoose_1.Schema({
     firstName: {
         type: String,
         trim: true,
-        required: [true, "firstName is required"],
         maxlength: [20, "firstName can not be more than 20 characters"],
     },
     lastName: {
         type: String,
         trim: true,
-        required: [true, "firstName is required"],
         maxlength: [20, "lastName can not be more than 20 characters"],
     },
 }, { _id: false });
@@ -34,56 +32,22 @@ const addressSchema = new mongoose_1.Schema({
     city: String,
     country: String,
 }, { _id: false });
-const ordersSchema = new mongoose_1.Schema({
-    productName: {
-        type: String,
-        required: [true, "productName is required"],
-    },
-    price: {
-        type: Number,
-        require: [true, "price is required"],
-    },
-    quantity: {
-        type: Number,
-        required: [true, "quantity is required"],
-    },
-}, { _id: false });
 const userSchema = new mongoose_1.Schema({
-    userId: {
-        type: Number,
-        unique: true,
-        required: [true, "userId is required"],
-    },
-    username: {
-        type: String,
-        unique: true,
-        trim: true,
-        required: [true, "username is required"],
-    },
-    password: String,
-    fullName: {
-        type: fullNameSchema,
-        required: [true, "fullName is required"],
-    },
-    age: {
-        type: Number,
-        required: [true, "age is required"],
-    },
     email: {
         type: String,
         unique: true,
         required: [true, "email is required"],
     },
-    isActive: Boolean,
-    hobbies: {
-        type: [String],
-        required: [true, "hobbies is required"],
+    password: String,
+    fullName: {
+        type: fullNameSchema,
+    },
+    age: {
+        type: Number,
     },
     address: {
         type: addressSchema,
-        required: [true, "address is required"],
     },
-    orders: { type: [ordersSchema], required: false },
 });
 // secure our password by bcrypt
 userSchema.pre("save", function (next) {
@@ -100,9 +64,9 @@ userSchema.post("save", function (user, next) {
     });
 });
 //custom static method
-userSchema.statics.isUserExists = function (id) {
+userSchema.statics.isUserExists = function (email) {
     return __awaiter(this, void 0, void 0, function* () {
-        const user = yield User.findOne({ userId: id });
+        const user = yield User.findOne({ email: email });
         return user;
     });
 };
