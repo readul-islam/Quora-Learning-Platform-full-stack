@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import SearchBar from "./SearchBar";
+import Navbar from '../../components/Navbar'
 const CourseList = () => {
   const [selectedCourse, setSelectedCourse] = useState(false);
   const navigate = useNavigate()
@@ -9,7 +10,11 @@ const CourseList = () => {
   ];
   return (
     <>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3  xl:grid-cols-5  gap-x-10 content-center gap-y-8 mt-4 mx-6 xl:mx-8">
+    <Navbar/>
+   <div className="mx-12 my-6">
+   <SearchBar/>
+   <p className="font-semibold text-xl mt-4 ">Courses</p>
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3  xl:grid-cols-5  gap-x-10 content-center gap-y-8 mt-4  ">
         {list.map((data) => (
           <>
             <div onClick={()=> navigate(`/course/${data}`)} className="card glass cursor-pointer">
@@ -78,6 +83,7 @@ const CourseList = () => {
           </>
         ))}
       </div>
+   </div>
 
 
 

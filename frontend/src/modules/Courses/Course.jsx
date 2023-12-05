@@ -5,7 +5,7 @@ const Course = () => {
   return (
     <>
     <div className="bg-gray-800">
-      <div className="max-w-6xl mx-auto relative py-10">
+      <div className="max-w-6xl mx-auto relative py-10 px-2">
         <div className="text-white max-w-2xl space-y-3">
           <p>{`Development >
 Programming Languages >
@@ -63,7 +63,7 @@ Python `}</p>
           </div>
         </div>
 
-        <div className="card bg-white shadow-xl  w-96 absolute cursor-pointer top-10 right-0">
+        <div className="card bg-white shadow-xl  w-80 absolute cursor-pointer top-10 right-2">
           <figure>
             <img
               src="https://www.classcentral.com/report/wp-content/uploads/2020/06/top-100-course-pandemic.png"
@@ -131,7 +131,7 @@ Python `}</p>
       </div>
     </div>
 
-    <div className="max-w-6xl mx-auto mt-24">
+    <div className="max-w-6xl mx-auto mt-24 px-2">
         <div className="max-w-2xl">
 
         
