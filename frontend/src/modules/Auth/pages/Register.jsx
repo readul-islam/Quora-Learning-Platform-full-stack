@@ -12,16 +12,20 @@ const Register = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  // register handler
   const submitHandler = async (values) => {
     try {
       const { email, password } = values;
       const res = await registerApi({ email, password });
       console.log(res);
-
-      dispatch(logIn(res.data.token));
+      const payload = {
+        token: res?.data?.token,
+        userInfo: { userId: res?.data?.user?._id, email: res?.data?.user?.email },
+      };
+      dispatch(logIn(payload));
       navigate("/", { replace: true });
     } catch (error) {
-      alert(err.response.data);
+      alert(err?.response?.data);
     }
   };
 

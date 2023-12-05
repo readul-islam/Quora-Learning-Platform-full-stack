@@ -3,15 +3,32 @@ import React from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import { SIGN_IN_INITIAL_VALUES } from "../constants";
-
-
+import { logInApi } from "../api/auth";
+import { logIn } from "../../../store/authenticationSlice";
+import { useDispatch } from "react-redux";
 
 const Login = () => {
   const navigate = useNavigate();
-i
+  const dispatch = useDispatch();
+
+  // Login handler
   const submitHandler = async (values) => {
-    const { email, password } = values;
-    console.log(values);
+    try {
+      const { email, password } = values;
+      const res = await logInApi({ email, password });
+      localStorage.setItem("refresh-token", res.data.refreshToken);
+      const payload = {
+        token: res?.data?.token,
+        userInfo: {
+          userId: res?.data?.user?._id,
+          email: res?.data?.user?.email,
+        },
+      };
+      dispatch(logIn(payload));
+      navigate("/", { replace: true });
+    } catch (error) {
+      alert(err?.response?.data);
+    }
   };
 
   const formik = useFormik({

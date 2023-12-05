@@ -3,10 +3,18 @@ import React from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
 import PrimaryBtn from "./PrimaryBtn";
+import { useDispatch, useSelector } from "react-redux";
+import { logOut } from "../store/authenticationSlice";
 
 const Navbar = () => {
   let navigate = useNavigate();
+  const dispatch = useDispatch()
+  const { isLoggedIn } = useSelector((state) => state.authentication);
 
+  const logOutHandler=()=>{
+    dispatch(logOut())
+    navigate('/login')
+  }
   const menus = (
     <>
       <li className="md:mx-1 text-base">
@@ -62,7 +70,7 @@ const Navbar = () => {
           <ul className="menu menu-horizontal p-0">{menus}</ul>
         </div>
         <div className="navbar-end ">
-          {true ? (
+          {!isLoggedIn ? (
             <Link to="/login">
               <PrimaryBtn>Sign UP</PrimaryBtn>{" "}
             </Link>
@@ -129,12 +137,7 @@ const Navbar = () => {
                     <li>
                       <a>Settings</a>
                     </li>
-                    <li
-                      onClick={() => {
-                        // signOut(auth);
-                        navigate("/login");
-                      }}
-                    >
+                    <li onClick={logOutHandler}>
                       <a>Logout</a>
                     </li>
                   </ul>
