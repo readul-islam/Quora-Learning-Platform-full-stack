@@ -53,12 +53,15 @@ class CourseController {
             catch (error) { }
         });
     }
-    updateCourse() {
+    uploadCourseSyllabusVideo(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const course = yield (0, service_1.updateCourse)();
+                const uploadVideo = yield (0, service_1.uploadCourseSyllabusVideo)(req, next);
+                (0, common_handler_1.SuccessResponse)(res, uploadVideo, "Video uploaded successfully");
             }
-            catch (error) { }
+            catch (error) {
+                next(error);
+            }
         });
     }
     searchCourses(req, res, next) {

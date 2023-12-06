@@ -3,11 +3,17 @@ import { AppError } from "../../../utils";
 
 const userEnrollInCourse = async (reqBody: any) => {
   console.log(reqBody);
-  const isExist = await Enrollment.findOne({ userId: reqBody.userId, courseId:reqBody.courseId });
+  const isExist = await Enrollment.findOne({
+    userId: reqBody.userId,
+    courseId: reqBody.courseId,
+  });
+  console.log(isExist);
   if (isExist) {
     throw new AppError("Enrollment already exists", 400);
   }
+
   const enrollment = await Enrollment.create(reqBody);
+  console.log(enrollment, "hjhh");
   return enrollment;
 };
 
@@ -20,10 +26,13 @@ const getEnrolledCourseByUserId = async (query: any) => {
 };
 
 const isEnrolled = async (query: any) => {
-  const { userId ,courseId} = query;
-  console.log(query)
+  const { userId, courseId } = query;
+  console.log(query);
 
-  const isExist = await Enrollment.findOne({ userId: userId, courseId:courseId });
+  const isExist = await Enrollment.findOne({
+    userId: userId,
+    courseId: courseId,
+  });
 
   if (isExist) {
     return true;

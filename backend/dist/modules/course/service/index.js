@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.searchCourses = exports.updateCourse = exports.getCourses = exports.getCourse = exports.createNewCourse = void 0;
+exports.searchCourses = exports.uploadCourseSyllabusVideo = exports.getCourses = exports.getCourse = exports.createNewCourse = void 0;
 const course_1 = __importDefault(require("../../../models/course"));
 const createNewCourse = (req, next) => __awaiter(void 0, void 0, void 0, function* () {
     //   const uploadUrl = await uploadVideo(req, next);
@@ -29,8 +29,16 @@ const getCourses = () => __awaiter(void 0, void 0, void 0, function* () {
     return yield course_1.default.find();
 });
 exports.getCourses = getCourses;
-const updateCourse = () => __awaiter(void 0, void 0, void 0, function* () { });
-exports.updateCourse = updateCourse;
+const uploadCourseSyllabusVideo = (req, next) => __awaiter(void 0, void 0, void 0, function* () {
+    // const uploadUrl = await uploadVideo(req, next);
+    // console.log(uploadUrl)
+    const { courseId, syllabusId } = req.params;
+    const newVideo = yield course_1.default.findOneAndUpdate({ _id: courseId, syllabus: { $elemMatch: { _id: syllabusId } } }, { $push: { "syllabus.$.videos": req.body } }, { returnOriginal: false, upsert: true, new: true }
+    // {upsert: true, new : true})
+    );
+    return newVideo;
+});
+exports.uploadCourseSyllabusVideo = uploadCourseSyllabusVideo;
 const searchCourses = (searchQuery) => __awaiter(void 0, void 0, void 0, function* () {
     const { query } = searchQuery;
     let regex = new RegExp("^" + query, "i");

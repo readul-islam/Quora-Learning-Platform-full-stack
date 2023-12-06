@@ -1,3 +1,4 @@
+import { upload } from './../../../hooks/uploadVideo';
 import { NextFunction, Request, Response } from "express";
 import {
   AppError,
@@ -9,7 +10,8 @@ import {
   getCourse,
   getCourses,
   searchCourses,
-  updateCourse,
+  uploadCourseSyllabusVideo,
+  
 } from "../service";
 
 class CourseController {
@@ -43,10 +45,13 @@ class CourseController {
       SuccessResponse(res, course, "Course fetched successfully");
     } catch (error) {}
   }
-  async updateCourse() {
+  async uploadCourseSyllabusVideo(req: Request, res: Response, next: NextFunction) {
     try {
-      const course = await updateCourse();
-    } catch (error) {}
+      const uploadVideo = await uploadCourseSyllabusVideo(req ,next);
+      SuccessResponse(res, uploadVideo, "Video uploaded successfully");
+    } catch (error) {
+      next(error)
+    }
   }
   async searchCourses(req: Request, res: Response, next: NextFunction) {
     try {

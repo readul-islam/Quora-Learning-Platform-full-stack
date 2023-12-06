@@ -5,13 +5,13 @@ const enrollmentSchema = new Schema<TEnrollment>({
   userId: {
     type: Schema.Types.ObjectId,
     required: [true, "userId is required"],
-    unique: true,
+
     ref: "user",
   },
   courseId: {
     type: Schema.Types.ObjectId,
     required: [true, "courseId  is required"],
-    unique: true,
+
     ref: "course",
   },
   courseTitle: {

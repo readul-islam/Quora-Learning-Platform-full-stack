@@ -15,6 +15,8 @@ courseRouter.get("/list", CourseController.getCourses);
 courseRouter.get("/",CourseController.getCourse);
 // 
 courseRouter.get("/search",CourseController.searchCourses);
+
+courseRouter.put("/upload/video/:courseId/:syllabusId", upload.single("file"),CourseController.uploadCourseSyllabusVideo);
 // 
 router.use("/course", courseRouter);
 

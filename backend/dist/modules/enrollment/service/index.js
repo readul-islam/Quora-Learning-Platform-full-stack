@@ -17,11 +17,16 @@ const enrollment_1 = __importDefault(require("../../../models/enrollment"));
 const utils_1 = require("../../../utils");
 const userEnrollInCourse = (reqBody) => __awaiter(void 0, void 0, void 0, function* () {
     console.log(reqBody);
-    const isExist = yield enrollment_1.default.findOne({ userId: reqBody.userId, courseId: reqBody.courseId });
+    const isExist = yield enrollment_1.default.findOne({
+        userId: reqBody.userId,
+        courseId: reqBody.courseId,
+    });
+    console.log(isExist);
     if (isExist) {
         throw new utils_1.AppError("Enrollment already exists", 400);
     }
     const enrollment = yield enrollment_1.default.create(reqBody);
+    console.log(enrollment, "hjhh");
     return enrollment;
 });
 exports.userEnrollInCourse = userEnrollInCourse;
@@ -36,7 +41,10 @@ exports.getEnrolledCourseByUserId = getEnrolledCourseByUserId;
 const isEnrolled = (query) => __awaiter(void 0, void 0, void 0, function* () {
     const { userId, courseId } = query;
     console.log(query);
-    const isExist = yield enrollment_1.default.findOne({ userId: userId, courseId: courseId });
+    const isExist = yield enrollment_1.default.findOne({
+        userId: userId,
+        courseId: courseId,
+    });
     if (isExist) {
         return true;
     }
