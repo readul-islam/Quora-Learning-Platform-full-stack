@@ -14,12 +14,27 @@ const enrollmentSchema = new Schema<TEnrollment>({
     unique: true,
     ref: "course",
   },
-  courseTitle: String,
-  thumbnail: String,
-  introUrl: String,
+  courseTitle: {
+    type: String,
+    required: [true, "courseTitle is required"],
+  },
+  thumbnail: {
+    type: String,
+    required: [true, "thumbnail is required"],
+  },
+  introUrl: {
+    type: String,
+    required: [true, "introUrl is required"],
+  },
   userName: String,
-  userEmail: String,
-  instructorName: String,
+  userEmail: {
+    type: String,
+    required: [true, "userEmail is required"],
+  },
+  instructorName: {
+    type: String,
+    required: [true, "instructorName is required"],
+  },
   status: {
     type: String,
     enum: ["Open", "Closed", "In Progress"],

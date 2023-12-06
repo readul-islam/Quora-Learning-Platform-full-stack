@@ -1,11 +1,16 @@
-import React from 'react';
+import React from "react";
 import { motion } from "framer-motion";
-const PrimaryBtn = ({style,children}) => {
-    return (
-        <button
-       
-        className={`btn ${style} bg-secondary  !py-1.5 text-white`}>{children}</button> 
-    );
+const PrimaryBtn = ({ onClickHandler, style, children, ...others }) => {
+  console.log(others);
+  return (
+    <button
+    {...others}
+      onClick={onClickHandler}
+      className={`btn ${style} bg-secondary  !py-1.5`}
+    >
+      {children}
+    </button>
+  );
 };
 
 export default PrimaryBtn;

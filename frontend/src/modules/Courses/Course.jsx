@@ -8,16 +8,18 @@ import { GiPodiumWinner } from "react-icons/gi";
 import { MdOutlineSlowMotionVideo } from "react-icons/md";
 import { useParams } from "react-router-dom";
 import CourseContent from "./CourseContent";
-import { getCourseById } from "./api";
+import { getCourseById, isEnrolled, userEnrollInCourse } from "./api";
 
 import ReactPlayer from "react-player";
 import Skeleton from "./Skeleton";
 import PrimaryBtn from "../../components/PrimaryBtn";
+import { useSelector } from "react-redux";
 
 const Course = () => {
   const [courseDetails, setCourseDetails] = useState({});
   const [runVideo, setRunVideo] = useState(false);
-  const [open, setOpen] = useState(false);
+  const [reload, setReload] = useState(false);
+  const [isEnrolledCourse, setIsEnrolledCourse] = useState(false);
   const [syllabus, setSyllabus] = useState([]);
   const [syllabusMoreSection, setSyllabusMoreSection] = useState(0);
   const [requirements, setRequirements] = useState([]);
@@ -26,10 +28,23 @@ const Course = () => {
   const { courseId } = useParams();
   console.log(courseId);
 
+  const {
+    isLoggedIn,
+    userInfo: { userId, email },
+  } = useSelector((state) => state.authentication);
+
+  useEffect(() => {
+    const fetchIsExist = async () => {
+      const res = await isEnrolled({ userId, courseId: courseId });
+      setIsEnrolledCourse(res?.data?.isExist);
+    };
+    fetchIsExist();
+  }, [reload]);
+
   useEffect(() => {
     const fetchData = async () => {
       const res = await getCourseById(courseId);
-      console.log(res);
+
       if (res) {
         let course = res.data;
         setCourseDetails(course);
@@ -43,7 +58,6 @@ const Course = () => {
         if (course.syllabus.length > 7) {
           setSyllabus([...course.syllabus].splice(0, 6));
           setSyllabusMoreSection(course.syllabus.length - 6);
-          // console.log(course.)
         } else {
           setSyllabus(course.syllabus);
         }
@@ -52,7 +66,30 @@ const Course = () => {
 
     fetchData();
   }, [courseId]);
-  console.log(syllabus);
+
+  const enrollCourseHandler = async () => {
+    try {
+      const enrollmentData = {
+        userId: userId,
+        courseId: courseDetails._id,
+        courseTitle: courseDetails.name,
+        thumbnail: courseDetails.thumbnail,
+        introUrl: courseDetails.introUrl,
+        userName: "",
+        userEmail: email,
+        instructorName: courseDetails.instructor,
+        status: courseDetails.enrollmentStatus,
+      };
+
+      const enrolling = await userEnrollInCourse(enrollmentData);
+      setReload(!reload);
+    } catch (error) {
+      if (error.code === "ERR_BAD_REQUEST") {
+        alert("Already enrolled in this course");
+      }
+    }
+  };
+
   return (
     <>
       {courseDetails.hasOwnProperty("name") ? (
@@ -140,11 +177,18 @@ const Course = () => {
                     {/* {courseDetails.name} */}
                   </h2>
                   <div className="px-2">
-                    <PrimaryBtn style="rounded-none border-secondary  w-full text-lg mb-2 hover:bg-gray-600 text-white mt-4 ">
+                    <PrimaryBtn
+                      disabled={isEnrolledCourse ? true : false}
+                      style="rounded-none border-secondary  w-full text-lg mb-2 hover:bg-gray-600 text-white mt-4 "
+                    >
                       Add to cart
                     </PrimaryBtn>
-                    <PrimaryBtn style="rounded-none border  w-full text-lg bg-white text-gray-600  border-gray-400">
-                      Enroll now
+                    <PrimaryBtn
+                      disabled={isEnrolledCourse ? true : false}
+                      onClickHandler={enrollCourseHandler}
+                      style="rounded-none border  w-full text-lg bg-white text-gray-700  border-gray-400"
+                    >
+                  { isEnrolledCourse? "Enrolled":"Enroll now"  }
                     </PrimaryBtn>
                   </div>
                   <div className="px-2 my-6">
@@ -169,10 +213,8 @@ const Course = () => {
                         <span>Full lifetime access</span>
                       </p>
                       <p className="flex items-center gap-2">
-                          <GiPodiumWinner />
-                        <span>
-                          Certificate of completion
-                        </span>
+                        <GiPodiumWinner />
+                        <span>Certificate of completion</span>
                       </p>
                     </div>
                   </div>
