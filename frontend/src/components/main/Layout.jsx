@@ -2,9 +2,12 @@ import React from "react";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import routes from "./routes";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation, useParams } from "react-router-dom";
 
 const Layout = () => {
+  const params = useLocation();
+  
+  console.log(params)
   const renderRoutes = routes.map(
     (route) =>
       route.component && (
@@ -21,7 +24,7 @@ const Layout = () => {
       <div className="bg-gradient-to-tr min-h-screen from-accent to-neutral ">
         <Routes>{renderRoutes}</Routes>
       </div>
-      <Footer />
+    <Footer />
     </>
   );
 };

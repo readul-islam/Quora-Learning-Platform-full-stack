@@ -6,7 +6,7 @@ import { SiOpenaccess } from "react-icons/si";
 import { GiPodiumWinner } from "react-icons/gi";
 
 import { MdOutlineSlowMotionVideo } from "react-icons/md";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import CourseContent from "./CourseContent";
 import { getCourseById, isEnrolled, userEnrollInCourse } from "./api";
 
@@ -26,7 +26,7 @@ const Course = () => {
   const [description, setDescription] = useState("");
   const [seeMoreDescription, setSeeMoreDescription] = useState(false);
   const { courseId } = useParams();
-  console.log(courseId);
+  const navigate = useNavigate();
 
   const {
     isLoggedIn,
@@ -68,6 +68,10 @@ const Course = () => {
   }, [courseId]);
 
   const enrollCourseHandler = async () => {
+    if (!isLoggedIn) {
+      navigate("/register ");
+    }
+
     try {
       const enrollmentData = {
         userId: userId,
@@ -188,7 +192,7 @@ const Course = () => {
                       onClickHandler={enrollCourseHandler}
                       style="rounded-none border  w-full text-lg bg-white text-gray-700  border-gray-400"
                     >
-                  { isEnrolledCourse? "Enrolled":"Enroll now"  }
+                      {isEnrolledCourse ? "Enrolled" : "Enroll now"}
                     </PrimaryBtn>
                   </div>
                   <div className="px-2 my-6">

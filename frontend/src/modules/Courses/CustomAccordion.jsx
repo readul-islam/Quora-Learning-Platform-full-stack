@@ -8,25 +8,53 @@ import {
   AccordionItemPanel,
 } from "react-accessible-accordion";
 import "react-accessible-accordion/dist/fancy-example.css";
-const CustomAccordion = ({ syllabus }) => {
+import { MdOutlineSlowMotionVideo } from "react-icons/md";
+const CustomAccordion = ({ syllabus, setVideoUrl}) => {
   console.log(syllabus);
   return (
     <>
       {!isEmpty(syllabus) ? (
-        <Accordion
-          className="bg-white"
-          allowZeroExpanded={true}
-          allowMultipleExpanded={true}
-        >
+        <Accordion allowZeroExpanded={true} allowMultipleExpanded={true}>
           {syllabus.map((course) => (
             <>
-              <AccordionItem className="border">
+              <AccordionItem className=" ">
                 <AccordionItemHeading>
                   <AccordionItemButton>{course.topic}</AccordionItemButton>
                 </AccordionItemHeading>
-                <AccordionItemPanel>
-                  <p>{course.description}</p>
-                </AccordionItemPanel>
+
+                {isEmpty(course.videos) ? (
+                  <AccordionItemPanel
+                  
+                    className="py-3 cursor-pointer border-b px-4"
+                  >
+                    <div className="flex items-center gap-x-2 ">
+                      <MdOutlineSlowMotionVideo
+                        // onClick={() => setRunVideo(true)}
+                        className="  text-fuchsia-500 cursor-pointer font-bold"
+                        size={20}
+                      />
+                      <p className="">{course.description}</p>
+                    </div>
+                  </AccordionItemPanel>
+                ) : (
+                  <>
+                    {course.videos.map((video) => (
+                      <AccordionItemPanel
+                      
+                      onClick={()=>setVideoUrl(video.videoUrl)}
+                      className="py-3 cursor-pointer border-b px-4">
+                        <div className="flex items-center gap-x-2 ">
+                          <MdOutlineSlowMotionVideo
+                          
+                            className="  text-fuchsia-500 cursor-pointer font-bold"
+                            size={20}
+                          />
+                          <p className="font-semibold">{video.title}</p>
+                        </div>
+                      </AccordionItemPanel>
+                    ))}
+                  </>
+                )}
               </AccordionItem>
             </>
           ))}

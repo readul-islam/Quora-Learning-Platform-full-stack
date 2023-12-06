@@ -9,6 +9,7 @@ import Dashboard from "./modules/Dashboard/pages/Dashboard";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Layout from "./components/main/Layout";
+import ContentPlayer from "./modules/Dashboard/pages/ContentPlayer";
 
 function App() {
   return (

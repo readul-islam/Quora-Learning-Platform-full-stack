@@ -4,7 +4,7 @@ import { MdOutlineSlowMotionVideo } from "react-icons/md";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import gril from '../../assets/banner-gril.png'
+import gril from "../../assets/banner-gril.png";
 import PrimaryBtn from "../../components/PrimaryBtn";
 
 const Banner = () => {
@@ -54,10 +54,10 @@ const Banner = () => {
               transition={{ delay: 2.9, duration: 0.9 }}
               className="flex items-center py-6 space-x-10"
             >
-              <PrimaryBtn>Try now</PrimaryBtn>
+              <PrimaryBtn style="text-white">Try now</PrimaryBtn>
               <div className="flex items-center rounded-full space-x-2 bg-primary py-1 px-2">
                 <MdOutlineSlowMotionVideo size={25} />
-                <p className='font-semibold'>Play</p>{" "}
+                <p className="font-semibold">Play</p>{" "}
               </div>
             </motion.div>
           </div>

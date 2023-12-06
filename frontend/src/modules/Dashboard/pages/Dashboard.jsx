@@ -2,12 +2,15 @@ import React, { useEffect, useState } from "react";
 import { getCourseListByUserId } from "../api";
 import { useSelector } from "react-redux";
 import { isEmpty } from "lodash";
+import { useNavigate } from "react-router-dom";
+import VideoSkeleton from "../components/VideoSkeleton";
 
 const Dashboard = () => {
+  const navigate = useNavigate();
   const [userCourseList, setUserCourseList] = useState([]);
+  const [isUserNOCourse, setIsUserNoCourse] = useState(false);
   const {
-    isLoggedIn,
-    userInfo: { userId, email },
+    userInfo: { userId },
   } = useSelector((state) => state.authentication);
 
   useEffect(() => {
@@ -16,9 +19,28 @@ const Dashboard = () => {
       setUserCourseList(res.data);
       console.log(res, "hhh");
     };
+
     fetchCourses();
+
+    const useDebounce = () => {
+      const handler = setTimeout(() => {
+        if (isEmpty(userCourseList)) {
+          setIsUserNoCourse(true);
+        }
+        console.log("mew");
+      }, 3000);
+
+      return () => {
+        clearTimeout(handler);
+      };
+    };
+    useDebounce();
   }, [userId]);
-  console.log(userId);
+
+  const navigateHandler = (user_id, course_id, courseName) => {
+    navigate(`${courseName}/${user_id}/${course_id}`);
+  };
+
   return (
     <div className="">
       <div className="max-w-7xl mx-auto pt-10 h-full ">
@@ -53,6 +75,13 @@ const Dashboard = () => {
                     </div>
                     <div className="flex items-center justify-center md:justify-start gap-8 ">
                       <button
+                        onClick={() => {
+                          navigateHandler(
+                            course.userId,
+                            course.courseId,
+                            course.courseTitle
+                          );
+                        }}
                         type="button"
                         class="bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg py-1.5 px-2 text-white"
                       >
@@ -71,12 +100,14 @@ const Dashboard = () => {
             ))}
         </div>
 
-        {isEmpty(userCourseList) && (
-          <>
-            <h3 className="text-center text-4xl mt-20 font-semibold">
-              Course Not Found
-            </h3>
-          </>
+        {isEmpty(userCourseList) && !isUserNOCourse && (
+          <div className="flex gap-24">
+            <VideoSkeleton />
+            <VideoSkeleton />
+          </div>
+        )}
+        {isEmpty(userCourseList) && isUserNOCourse && (
+          <p className="text-center pt-20 text-2xl">Unavailable Courses</p>
         )}
       </div>
     </div>

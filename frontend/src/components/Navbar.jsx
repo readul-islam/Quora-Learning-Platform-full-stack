@@ -71,8 +71,8 @@ const Navbar = () => {
         </div>
         <div className="navbar-end ">
           {!isLoggedIn ? (
-            <Link to="/login">
-              <PrimaryBtn>Sign UP</PrimaryBtn>{" "}
+            <Link to="/register">
+              <PrimaryBtn style="text-white ">Sign UP</PrimaryBtn>{" "}
             </Link>
           ) : (
             <>
