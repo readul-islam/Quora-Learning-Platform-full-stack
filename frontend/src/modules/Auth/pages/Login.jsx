@@ -1,11 +1,11 @@
-import { useFormik } from "formik";
-import React from "react";
-import { FcGoogle } from "react-icons/fc";
-import { Link, useNavigate } from "react-router-dom";
-import { SIGN_IN_INITIAL_VALUES } from "../constants";
-import { logInApi } from "../api/auth";
-import { logIn } from "../../../store/authenticationSlice";
-import { useDispatch } from "react-redux";
+import { useFormik } from 'formik';
+import React from 'react';
+import { FcGoogle } from 'react-icons/fc';
+import { Link, useNavigate } from 'react-router-dom';
+import { SIGN_IN_INITIAL_VALUES } from '../constants';
+import { logInApi } from '../api/auth';
+import { logIn } from '../../../store/authenticationSlice';
+import { useDispatch } from 'react-redux';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ const Login = () => {
     try {
       const { email, password } = values;
       const res = await logInApi({ email, password });
-      localStorage.setItem("refresh-token", res.data.refreshToken);
+      localStorage.setItem('refresh-token', res.data.refreshToken);
       const payload = {
         token: res?.data?.token,
         userInfo: {
@@ -25,7 +25,7 @@ const Login = () => {
         },
       };
       dispatch(logIn(payload));
-      navigate("/", { replace: true });
+      navigate('/', { replace: true });
     } catch (error) {
       alert(err?.response?.data);
     }
@@ -40,7 +40,7 @@ const Login = () => {
     <>
       <div
         style={{
-          backgroundImage: "url(https://wallpapercave.com/wp/wp9764093.jpg)",
+          backgroundImage: 'url(https://wallpapercave.com/wp/wp9764093.jpg)',
         }}
         className="hero min-h-screen  "
       >
@@ -76,7 +76,7 @@ const Login = () => {
                     type="email"
                     name="email"
                     id="email"
-                    {...formik.getFieldProps("email")}
+                    {...formik.getFieldProps('email')}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                     placeholder="name@company.com"
                     required
@@ -93,7 +93,7 @@ const Login = () => {
                     type="password"
                     name="password"
                     id="password"
-                    {...formik.getFieldProps("password")}
+                    {...formik.getFieldProps('password')}
                     placeholder="••••••••"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                     required
@@ -106,7 +106,7 @@ const Login = () => {
                         id="remember"
                         type="checkbox"
                         name="remember"
-                        {...formik.getFieldProps("remember")}
+                        {...formik.getFieldProps('remember')}
                         className="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
                         required
                       />
@@ -129,10 +129,10 @@ const Login = () => {
                   type="submit"
                   className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 uppercase"
                 >
-                  Sign in{" "}
+                  Sign in{' '}
                 </button>
                 <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
-                  Not registered?{" "}
+                  Not registered?{' '}
                   <Link
                     to="/register"
                     className="text-blue-700 hover:underline dark:text-blue-500"

@@ -1,15 +1,15 @@
-import { motion } from "framer-motion";
-import React from "react";
-import { MdOutlineSlowMotionVideo } from "react-icons/md";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import gril from "../../assets/banner-gril.png";
-import PrimaryBtn from "../../components/PrimaryBtn";
+import { motion } from 'framer-motion';
+import React from 'react';
+import { MdOutlineSlowMotionVideo } from 'react-icons/md';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import gril from '../../assets/banner-gril.png';
+import PrimaryBtn from '../../components/PrimaryBtn';
 
 const Banner = () => {
   const imgVariants = {
-    hidden: { x: "100vw", opacity: 0 },
+    hidden: { x: '100vw', opacity: 0 },
     visible: { x: 0, opacity: 1, transition: { damping: 30, duration: 0.9 } },
   };
   return (
@@ -34,8 +34,8 @@ const Banner = () => {
               transition={{ delay: 0.9, duration: 0.9 }}
               className="text-xl md:text-3xl lg:text-5xl pb-6 text-secondary font-bold font-serif"
             >
-              {" "}
-              <p>Online Learning Now</p> <p>In Your Fingertips</p>{" "}
+              {' '}
+              <p>Online Learning Now</p> <p>In Your Fingertips</p>{' '}
             </motion.div>
             <motion.div
               initial={{ y: 20, opacity: 0 }}
@@ -45,7 +45,7 @@ const Banner = () => {
             >
               <p>
                 Quora is a online learning platform that offers various premium
-              </p>{" "}
+              </p>{' '}
               <p>courses for your skill development</p>
             </motion.div>
             <motion.div
@@ -57,7 +57,7 @@ const Banner = () => {
               <PrimaryBtn style="text-white">Try now</PrimaryBtn>
               <div className="flex items-center rounded-full space-x-2 bg-primary py-1 px-2">
                 <MdOutlineSlowMotionVideo size={25} />
-                <p className="font-semibold">Play</p>{" "}
+                <p className="font-semibold">Play</p>{' '}
               </div>
             </motion.div>
           </div>

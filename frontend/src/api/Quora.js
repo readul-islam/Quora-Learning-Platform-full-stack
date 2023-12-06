@@ -1,10 +1,9 @@
-import axios from "axios";
-import store from "../store";
-import { logIn } from "../store/authenticationSlice";
-
+import axios from 'axios';
+import store from '../store';
+import { logIn } from '../store/authenticationSlice';
 
 const quora = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: 'http://localhost:5000',
 
   withCredentials: true,
 });
@@ -13,13 +12,13 @@ quora.interceptors.request.use(
   (config) => {
     const token = store.getState().authentication.token;
     if (token) {
-      config.headers["x-access-token"] = token;
+      config.headers['x-access-token'] = token;
     }
     return config;
   },
   (error) => {
     return Promise.reject(error);
-  }
+  },
 );
 // set token in our
 quora.interceptors.response.use(
@@ -35,22 +34,22 @@ quora.interceptors.response.use(
     if (error.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
       const response = await quora.post(
-        "/api/user/auth-refresh",
+        '/api/user/auth-refresh',
         {},
         {
           headers: {
-            refresh_token: localStorage.getItem("refresh-token"),
+            refresh_token: localStorage.getItem('refresh-token'),
           },
-        }
+        },
       );
 
       const token = response.data.token;
       store.dispatch(logIn(token));
-      quora.defaults.headers.common["x-access-token"] = token;
+      quora.defaults.headers.common['x-access-token'] = token;
       return await quora(originalRequest);
     }
     return Promise.reject(error);
-  }
+  },
 );
 
 export const commonThenResult = (result) => result.data;

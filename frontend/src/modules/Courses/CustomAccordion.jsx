@@ -1,15 +1,15 @@
-import React from "react";
-import { isEmpty } from "lodash";
+import React from 'react';
+import { isEmpty } from 'lodash';
 import {
   Accordion,
   AccordionItem,
   AccordionItemHeading,
   AccordionItemButton,
   AccordionItemPanel,
-} from "react-accessible-accordion";
-import "react-accessible-accordion/dist/fancy-example.css";
-import { MdOutlineSlowMotionVideo } from "react-icons/md";
-const CustomAccordion = ({ syllabus, setVideoUrl}) => {
+} from 'react-accessible-accordion';
+import 'react-accessible-accordion/dist/fancy-example.css';
+import { MdOutlineSlowMotionVideo } from 'react-icons/md';
+const CustomAccordion = ({ syllabus, setVideoUrl }) => {
   console.log(syllabus);
   return (
     <>
@@ -23,10 +23,7 @@ const CustomAccordion = ({ syllabus, setVideoUrl}) => {
                 </AccordionItemHeading>
 
                 {isEmpty(course.videos) ? (
-                  <AccordionItemPanel
-                  
-                    className="py-3 cursor-pointer border-b px-4"
-                  >
+                  <AccordionItemPanel className="py-3 cursor-pointer border-b px-4">
                     <div className="flex items-center gap-x-2 ">
                       <MdOutlineSlowMotionVideo
                         // onClick={() => setRunVideo(true)}
@@ -40,12 +37,11 @@ const CustomAccordion = ({ syllabus, setVideoUrl}) => {
                   <>
                     {course.videos.map((video) => (
                       <AccordionItemPanel
-                      
-                      onClick={()=>setVideoUrl(video.videoUrl)}
-                      className="py-3 cursor-pointer border-b px-4">
+                        onClick={() => setVideoUrl(video.videoUrl)}
+                        className="py-3 cursor-pointer border-b px-4"
+                      >
                         <div className="flex items-center gap-x-2 ">
                           <MdOutlineSlowMotionVideo
-                          
                             className="  text-fuchsia-500 cursor-pointer font-bold"
                             size={20}
                           />
@@ -60,7 +56,7 @@ const CustomAccordion = ({ syllabus, setVideoUrl}) => {
           ))}
         </Accordion>
       ) : (
-        "Data Not Found"
+        'Data Not Found'
       )}
     </>
   );

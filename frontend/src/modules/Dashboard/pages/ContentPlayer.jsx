@@ -1,22 +1,22 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { getCourseById } from "../../Courses/api";
-import { MdOutlineSlowMotionVideo } from "react-icons/md";
-import ReactPlayer from "react-player";
-import CustomAccordion from "../../Courses/CustomAccordion";
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { getCourseById } from '../../Courses/api';
+import { MdOutlineSlowMotionVideo } from 'react-icons/md';
+import ReactPlayer from 'react-player';
+import CustomAccordion from '../../Courses/CustomAccordion';
 
 const ContentPlayer = () => {
   const { userId, courseId } = useParams();
   const [course, setCourse] = useState({});
   const [runVideo, setRunVideo] = useState(false);
-  const [videoUrl, setVideoUrl] = useState("");
+  const [videoUrl, setVideoUrl] = useState('');
 
   useEffect(() => {
     const fetchCourse = async () => {
       const res = await getCourseById(courseId);
-      console.log(res)
+      console.log(res);
       setCourse(res.data);
-      setVideoUrl(res.data.introUrl)
+      setVideoUrl(res.data.introUrl);
     };
     fetchCourse();
   }, [courseId]);
@@ -52,7 +52,10 @@ const ContentPlayer = () => {
         </div>
 
         <div className="video-list my-2 xl:mt-0 w-full bg-white overflow-y-auto xl:h-[480px]">
-          <CustomAccordion setVideoUrl={setVideoUrl} syllabus={course.syllabus} />
+          <CustomAccordion
+            setVideoUrl={setVideoUrl}
+            syllabus={course.syllabus}
+          />
         </div>
       </div>
     </div>

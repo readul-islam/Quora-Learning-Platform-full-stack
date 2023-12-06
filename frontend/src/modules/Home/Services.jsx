@@ -1,32 +1,32 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React from 'react';
+import { motion } from 'framer-motion';
 
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/effect-coverflow";
-import "swiper/css/pagination";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/effect-coverflow';
+import 'swiper/css/pagination';
 
 const Services = () => {
   const data = [
     {
       id: 1,
-      name: "UI Design Basics",
-      img: "https://www.pngitem.com/pimgs/m/171-1710609_digital-design-icon-png-transparent-png.png",
+      name: 'UI Design Basics',
+      img: 'https://www.pngitem.com/pimgs/m/171-1710609_digital-design-icon-png-transparent-png.png',
     },
     {
       id: 2,
-      name: "UI Design Basics",
-      img: "https://www.pngitem.com/pimgs/m/171-1710609_digital-design-icon-png-transparent-png.png",
+      name: 'UI Design Basics',
+      img: 'https://www.pngitem.com/pimgs/m/171-1710609_digital-design-icon-png-transparent-png.png',
     },
     {
       id: 3,
-      name: "UI Design Basics",
-      img: "https://www.pngitem.com/pimgs/m/171-1710609_digital-design-icon-png-transparent-png.png",
+      name: 'UI Design Basics',
+      img: 'https://www.pngitem.com/pimgs/m/171-1710609_digital-design-icon-png-transparent-png.png',
     },
     {
       id: 4,
-      name: "UI Design Basics",
-      img: "https://www.pngitem.com/pimgs/m/171-1710609_digital-design-icon-png-transparent-png.png",
+      name: 'UI Design Basics',
+      img: 'https://www.pngitem.com/pimgs/m/171-1710609_digital-design-icon-png-transparent-png.png',
     },
   ];
   return (
@@ -62,7 +62,7 @@ const Services = () => {
             freeMode={true}
             centeredSlides={true}
             spaceBetween={20}
-            effect={"coverflow"}
+            effect={'coverflow'}
             grabCursor={true}
             loop={true}
             coverflowEffect={{

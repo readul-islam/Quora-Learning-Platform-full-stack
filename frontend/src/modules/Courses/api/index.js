@@ -1,11 +1,11 @@
-import quora, { commonThenResult } from "../../../api/Quora";
+import quora, { commonThenResult } from '../../../api/Quora';
 
 export const END_POINTS = {
-  COURSE_LIST: () => "/api/course/list",
-  GET_COURSE_BY_ID: () => "/api/course",
-  SEARCH_COURSES: () => "/api/course/search",
-  ENROLL_IN_COURSE: () => "/api/enrollment/course/enroll",
-  IS_ENROLLED_COURSE: () => "/api/enrollment/course/is-enrolled",
+  COURSE_LIST: () => '/api/course/list',
+  GET_COURSE_BY_ID: () => '/api/course',
+  SEARCH_COURSES: () => '/api/course/search',
+  ENROLL_IN_COURSE: () => '/api/enrollment/course/enroll',
+  IS_ENROLLED_COURSE: () => '/api/enrollment/course/is-enrolled',
 };
 
 export const getCourseList = async (inputData) => {

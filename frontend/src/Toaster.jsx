@@ -1,5 +1,5 @@
-import React from "react";
-import { Toaster as ToasterContainer } from "react-hot-toast";
+import React from 'react';
+import { Toaster as ToasterContainer } from 'react-hot-toast';
 
 const Toaster = () => {
   return (
@@ -13,19 +13,19 @@ const Toaster = () => {
       }}
       toastOptions={{
         // Define default options
-        className: "",
+        className: '',
         duration: 3000,
         style: {
-          background: "#363636",
-          color: "#fff",
-          padding: "16px",
+          background: '#363636',
+          color: '#fff',
+          padding: '16px',
         },
         // Default options for specific types
         success: {
           duration: 4000,
           theme: {
-            primary: "green",
-            secondary: "black",
+            primary: 'green',
+            secondary: 'black',
           },
         },
       }}

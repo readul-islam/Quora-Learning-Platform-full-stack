@@ -1,12 +1,12 @@
-import { useFormik } from "formik";
-import React from "react";
-import { FcGoogle } from "react-icons/fc";
-import { Link, useNavigate } from "react-router-dom";
-import { SIGN_UP_INITIAL_VALUES } from "../constants";
-import { SIGN_IN_FORM_VALIDATE_SCHEMA } from "../schema";
-import { registerApi } from "../api/auth";
-import { logIn } from "../../../store/authenticationSlice";
-import { useDispatch } from "react-redux";
+import { useFormik } from 'formik';
+import React from 'react';
+import { FcGoogle } from 'react-icons/fc';
+import { Link, useNavigate } from 'react-router-dom';
+import { SIGN_UP_INITIAL_VALUES } from '../constants';
+import { SIGN_IN_FORM_VALIDATE_SCHEMA } from '../schema';
+import { registerApi } from '../api/auth';
+import { logIn } from '../../../store/authenticationSlice';
+import { useDispatch } from 'react-redux';
 
 const Register = () => {
   const navigate = useNavigate();
@@ -20,10 +20,13 @@ const Register = () => {
       console.log(res);
       const payload = {
         token: res?.data?.token,
-        userInfo: { userId: res?.data?.user?._id, email: res?.data?.user?.email },
+        userInfo: {
+          userId: res?.data?.user?._id,
+          email: res?.data?.user?.email,
+        },
       };
       dispatch(logIn(payload));
-      navigate("/", { replace: true });
+      navigate('/', { replace: true });
     } catch (error) {
       alert(err?.response?.data);
     }
@@ -39,7 +42,7 @@ const Register = () => {
     <>
       <div
         style={{
-          backgroundImage: "url(https://wallpapercave.com/wp/wp9764093.jpg)",
+          backgroundImage: 'url(https://wallpapercave.com/wp/wp9764093.jpg)',
         }}
         className="hero min-h-screen  "
       >
@@ -71,7 +74,7 @@ const Register = () => {
                     type="email"
                     name="email"
                     id="email"
-                    {...formik.getFieldProps("email")}
+                    {...formik.getFieldProps('email')}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                     placeholder="name@company.com"
                     required
@@ -93,7 +96,7 @@ const Register = () => {
                     type="password"
                     name="password"
                     id="password"
-                    {...formik.getFieldProps("password")}
+                    {...formik.getFieldProps('password')}
                     placeholder="••••••••"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                     required
@@ -115,7 +118,7 @@ const Register = () => {
                     type="password"
                     name="confirmPassword"
                     id="confirmPassword"
-                    {...formik.getFieldProps("confirmPassword")}
+                    {...formik.getFieldProps('confirmPassword')}
                     placeholder="••••••••"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                     required
@@ -134,7 +137,7 @@ const Register = () => {
                         id="remember"
                         type="checkbox"
                         name="acceptCondition"
-                        {...formik.getFieldProps("acceptCondition")}
+                        {...formik.getFieldProps('acceptCondition')}
                         className="w-4 h-4 bg-gray-50 rounded border  border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
                         required
                       />
@@ -143,7 +146,7 @@ const Register = () => {
                       for="remember"
                       className="ml-2 text-sm font-medium cursor-pointer text-gray-900 dark:text-gray-300"
                     >
-                      I agree to the{" "}
+                      I agree to the{' '}
                       <a
                         href="#"
                         className="text-blue-600 hover:underline dark:text-blue-500"
@@ -163,10 +166,10 @@ const Register = () => {
                   type="submit"
                   className={`w-full bg-blue-700 hover:bg-blue-800  text-white  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 uppercase`}
                 >
-                  Register{" "}
+                  Register{' '}
                 </button>
                 <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
-                  Already registered?{" "}
+                  Already registered?{' '}
                   <Link
                     to="/login"
                     className="text-blue-700 hover:underline dark:text-blue-500"
@@ -184,7 +187,7 @@ const Register = () => {
                   <FcGoogle size={30} />
                 </span>
                 <span className=" text-xs md:text-sm ">
-                  {" "}
+                  {' '}
                   continue with google
                 </span>
               </button>

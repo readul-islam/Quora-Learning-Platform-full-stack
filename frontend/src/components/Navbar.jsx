@@ -1,20 +1,20 @@
-import React from "react";
+import React from 'react';
 
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 
-import PrimaryBtn from "./PrimaryBtn";
-import { useDispatch, useSelector } from "react-redux";
-import { logOut } from "../store/authenticationSlice";
+import PrimaryBtn from './PrimaryBtn';
+import { useDispatch, useSelector } from 'react-redux';
+import { logOut } from '../store/authenticationSlice';
 
 const Navbar = () => {
   let navigate = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const { isLoggedIn } = useSelector((state) => state.authentication);
 
-  const logOutHandler=()=>{
-    dispatch(logOut())
-    navigate('/login')
-  }
+  const logOutHandler = () => {
+    dispatch(logOut());
+    navigate('/login');
+  };
   const menus = (
     <>
       <li className="md:mx-1 text-base">
@@ -72,7 +72,7 @@ const Navbar = () => {
         <div className="navbar-end ">
           {!isLoggedIn ? (
             <Link to="/register">
-              <PrimaryBtn style="text-white ">Sign UP</PrimaryBtn>{" "}
+              <PrimaryBtn style="text-white ">Sign UP</PrimaryBtn>{' '}
             </Link>
           ) : (
             <>

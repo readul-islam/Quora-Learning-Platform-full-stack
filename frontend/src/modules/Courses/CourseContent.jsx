@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import CustomAccordion from "./CustomAccordion";
-import { isEmpty } from "lodash";
+import React, { useEffect, useState } from 'react';
+import CustomAccordion from './CustomAccordion';
+import { isEmpty } from 'lodash';
 
 const CourseContent = ({
   requirements,
@@ -60,7 +60,7 @@ const CourseContent = ({
       <div className="mb-6 ">
         <h3 className="text-xl font-semibold mb-2">Description</h3>
         <p>
-          <span>{description}</span>{" "}
+          <span>{description}</span>{' '}
           {!seeMoreDescription && (
             <span
               onClick={() => {

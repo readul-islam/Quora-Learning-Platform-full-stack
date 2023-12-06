@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import SearchBar from "./SearchBar";
-import { isEmpty } from "lodash";
-import Navbar from "../../components/Navbar";
-import { getCourseList } from "./api";
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import SearchBar from './SearchBar';
+import { isEmpty } from 'lodash';
+import Navbar from '../../components/Navbar';
+import { getCourseList } from './api';
 const CourseList = () => {
   const [selectedCourse, setSelectedCourse] = useState(false);
   const [courses, setCourses] = useState([]);
@@ -80,8 +80,8 @@ const CourseList = () => {
 
                     <div className="flex  items-center justify-between pr-2">
                       <p>
-                        {" "}
-                        <span className="font-semibold">$15.99</span>{" "}
+                        {' '}
+                        <span className="font-semibold">$15.99</span>{' '}
                         <span className="line-through pl-1">$84.99</span>
                       </p>
                       <div className="rating rating-md gap-1 ">

@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { getCourseListByUserId } from "../api";
-import { useSelector } from "react-redux";
-import { isEmpty } from "lodash";
-import { useNavigate } from "react-router-dom";
-import VideoSkeleton from "../components/VideoSkeleton";
+import React, { useEffect, useState } from 'react';
+import { getCourseListByUserId } from '../api';
+import { useSelector } from 'react-redux';
+import { isEmpty } from 'lodash';
+import { useNavigate } from 'react-router-dom';
+import VideoSkeleton from '../components/VideoSkeleton';
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ const Dashboard = () => {
     const fetchCourses = async () => {
       const res = await getCourseListByUserId({ userId: userId });
       setUserCourseList(res.data);
-      console.log(res, "hhh");
+      console.log(res, 'hhh');
     };
 
     fetchCourses();
@@ -27,7 +27,7 @@ const Dashboard = () => {
         if (isEmpty(userCourseList)) {
           setIsUserNoCourse(true);
         }
-        console.log("mew");
+        console.log('mew');
       }, 3000);
 
       return () => {
@@ -79,7 +79,7 @@ const Dashboard = () => {
                           navigateHandler(
                             course.userId,
                             course.courseId,
-                            course.courseTitle
+                            course.courseTitle,
                           );
                         }}
                         type="button"

@@ -1,8 +1,8 @@
-import  { useCountUp } from "react-countup";
-import React from "react";
+import { useCountUp } from 'react-countup';
+import React from 'react';
 const OurSuccess = () => {
   useCountUp({
-    ref: "student",
+    ref: 'student',
     enableScrollSpy: true,
     scrollSpyDelay: 1000,
     delay: 0.1,
@@ -11,7 +11,7 @@ const OurSuccess = () => {
     duration: 2,
   });
   useCountUp({
-    ref: "intership",
+    ref: 'intership',
     enableScrollSpy: true,
     scrollSpyDelay: 1000,
     delay: 0.5,
@@ -20,7 +20,7 @@ const OurSuccess = () => {
     duration: 3,
   });
   useCountUp({
-    ref: "job",
+    ref: 'job',
     enableScrollSpy: true,
     scrollSpyDelay: 1000,
     delay: 0.7,
@@ -29,7 +29,7 @@ const OurSuccess = () => {
     duration: 4,
   });
   useCountUp({
-    ref: "hairing",
+    ref: 'hairing',
     enableScrollSpy: true,
     scrollSpyDelay: 1000,
     delay: 0.9,

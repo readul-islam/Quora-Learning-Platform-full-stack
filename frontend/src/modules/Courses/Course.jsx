@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { MdOndemandVideo } from "react-icons/md";
-import { HiOutlineFolderDownload } from "react-icons/hi";
-import { CiMobile1 } from "react-icons/ci";
-import { SiOpenaccess } from "react-icons/si";
-import { GiPodiumWinner } from "react-icons/gi";
+import React, { useEffect, useState } from 'react';
+import { MdOndemandVideo } from 'react-icons/md';
+import { HiOutlineFolderDownload } from 'react-icons/hi';
+import { CiMobile1 } from 'react-icons/ci';
+import { SiOpenaccess } from 'react-icons/si';
+import { GiPodiumWinner } from 'react-icons/gi';
 
-import { MdOutlineSlowMotionVideo } from "react-icons/md";
-import { useNavigate, useParams } from "react-router-dom";
-import CourseContent from "./CourseContent";
-import { getCourseById, isEnrolled, userEnrollInCourse } from "./api";
+import { MdOutlineSlowMotionVideo } from 'react-icons/md';
+import { useNavigate, useParams } from 'react-router-dom';
+import CourseContent from './CourseContent';
+import { getCourseById, isEnrolled, userEnrollInCourse } from './api';
 
-import ReactPlayer from "react-player";
-import Skeleton from "./Skeleton";
-import PrimaryBtn from "../../components/PrimaryBtn";
-import { useSelector } from "react-redux";
+import ReactPlayer from 'react-player';
+import Skeleton from './Skeleton';
+import PrimaryBtn from '../../components/PrimaryBtn';
+import { useSelector } from 'react-redux';
 
 const Course = () => {
   const [courseDetails, setCourseDetails] = useState({});
@@ -23,7 +23,7 @@ const Course = () => {
   const [syllabus, setSyllabus] = useState([]);
   const [syllabusMoreSection, setSyllabusMoreSection] = useState(0);
   const [requirements, setRequirements] = useState([]);
-  const [description, setDescription] = useState("");
+  const [description, setDescription] = useState('');
   const [seeMoreDescription, setSeeMoreDescription] = useState(false);
   const { courseId } = useParams();
   const navigate = useNavigate();
@@ -69,7 +69,7 @@ const Course = () => {
 
   const enrollCourseHandler = async () => {
     if (!isLoggedIn) {
-      navigate("/register ");
+      navigate('/register ');
     }
 
     try {
@@ -79,7 +79,7 @@ const Course = () => {
         courseTitle: courseDetails.name,
         thumbnail: courseDetails.thumbnail,
         introUrl: courseDetails.introUrl,
-        userName: "",
+        userName: '',
         userEmail: email,
         instructorName: courseDetails.instructor,
         status: courseDetails.enrollmentStatus,
@@ -88,19 +88,19 @@ const Course = () => {
       const enrolling = await userEnrollInCourse(enrollmentData);
       setReload(!reload);
     } catch (error) {
-      if (error.code === "ERR_BAD_REQUEST") {
-        alert("Already enrolled in this course");
+      if (error.code === 'ERR_BAD_REQUEST') {
+        alert('Already enrolled in this course');
       }
     }
   };
 
   return (
     <>
-      {courseDetails.hasOwnProperty("name") ? (
+      {courseDetails.hasOwnProperty('name') ? (
         <>
           <div className="bg-gray-800">
             <div className="max-w-6xl mx-auto relative py-10 px-2">
-              {}{" "}
+              {}{' '}
               <div className="text-white max-w-2xl space-y-3">
                 <p>{`Development > Programming Languages > Python `}</p>
 
@@ -175,7 +175,7 @@ const Course = () => {
                   <h2 className="font-bold px-2 text-3xl flex items-center gap-2">
                     <span> $15 </span>
                     <span className="line-through text-sm text-gray-500">
-                      $84.99{" "}
+                      $84.99{' '}
                     </span>
                     <span className="text-sm text-gray-500">81% off</span>
                     {/* {courseDetails.name} */}
@@ -192,7 +192,7 @@ const Course = () => {
                       onClickHandler={enrollCourseHandler}
                       style="rounded-none border  w-full text-lg bg-white text-gray-700  border-gray-400"
                     >
-                      {isEnrolledCourse ? "Enrolled" : "Enroll now"}
+                      {isEnrolledCourse ? 'Enrolled' : 'Enroll now'}
                     </PrimaryBtn>
                   </div>
                   <div className="px-2 my-6">

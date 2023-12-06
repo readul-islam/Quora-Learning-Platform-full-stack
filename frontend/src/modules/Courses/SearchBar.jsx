@@ -1,17 +1,17 @@
-import React, { useState } from "react";
-import { searchCourses } from "./api";
+import React, { useState } from 'react';
+import { searchCourses } from './api';
 
 const SearchBar = ({ setCourses }) => {
-  const [selectCategory, setSelectCategory] = useState("All Categories");
+  const [selectCategory, setSelectCategory] = useState('All Categories');
   const [open, setOpen] = useState(false);
-  const categories = ["Frontend", "Backend"];
+  const categories = ['Frontend', 'Backend'];
   const handleOnChangeSearchHandler = async (e) => {
     const result = await searchCourses(e.target.value);
     if (result.data[0]) {
       setCourses(result.data);
     }
   };
- 
+
   return (
     <>
       <form>
@@ -41,7 +41,7 @@ const SearchBar = ({ setCourses }) => {
             <div
               id="dropdown"
               class={`z-10 absolute top-0 left-0   ${
-                open ? "block" : "hidden"
+                open ? 'block' : 'hidden'
               }  bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700`}
             >
               <ul
