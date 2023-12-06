@@ -9,22 +9,42 @@ import ReactPlayer from "react-player";
 const Course = () => {
   const [courseDetails, setCourseDetails] = useState({});
   const [runVideo, setRunVideo] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [syllabus, setSyllabus] = useState([]);
+  const [syllabusMoreSection, setSyllabusMoreSection] = useState(0);
+  const [requirements, setRequirements] = useState([]);
+  const [description, setDescription] = useState("");
+  const [seeMoreDescription, setSeeMoreDescription] = useState(false);
   const { courseId } = useParams();
   console.log(courseId);
 
   useEffect(() => {
     const fetchData = async () => {
-      const course = await getCourseById(courseId);
-      console.log(course);
-      if (course) {
-        setCourseDetails(course.data);
+      const res = await getCourseById(courseId);
+      console.log(res);
+      if (res) {
+        let course = res.data;
+        setCourseDetails(course);
+
+        setRequirements(course.preRequisites);
+        if (course.description.length >= 200) {
+          setDescription(course.description.slice(0, 180));
+        } else {
+          setDescription(course.description);
+        }
+        if (course.syllabus.length > 7) {
+          setSyllabus([...course.syllabus].splice(0, 6));
+          setSyllabusMoreSection(course.syllabus.length-6);
+          // console.log(course.)
+        } else {
+          setSyllabus(course.syllabus);
+        }
       }
     };
 
     fetchData();
   }, [courseId]);
-  console.log(runVideo);
-
+  console.log(syllabus);
   return (
     <>
       <div className="bg-gray-800">
@@ -165,7 +185,18 @@ Python `}</p>
 
       <div className="max-w-6xl mx-auto mt-24 px-2">
         <div className="max-w-2xl">
-          <CourseContent courseDetails={courseDetails} />
+          <CourseContent
+            setSyllabusMoreSection={setSyllabusMoreSection}
+            requirements={requirements}
+            syllabus={syllabus}
+            setSyllabus={setSyllabus}
+            description={description}
+            setDescription={setDescription}
+            setSeeMoreDescription={setSeeMoreDescription}
+            seeMoreDescription={seeMoreDescription}
+            courseDetails={courseDetails}
+            syllabusMoreSection={syllabusMoreSection}
+          />
         </div>
       </div>
     </>

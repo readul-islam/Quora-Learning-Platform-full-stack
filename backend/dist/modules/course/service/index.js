@@ -15,7 +15,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.updateCourse = exports.getCourses = exports.getCourse = exports.createNewCourse = void 0;
 const course_1 = __importDefault(require("../../../models/course"));
 const createNewCourse = (req, next) => __awaiter(void 0, void 0, void 0, function* () {
-    // const uploadUrl = await uploadVideo(req, next);
+    //   const uploadUrl = await uploadVideo(req, next);
+    // console.log(uploadUrl)
     const course = yield course_1.default.create(Object.assign({}, req.body));
     return course;
 });
