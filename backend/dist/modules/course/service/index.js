@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateCourse = exports.getCourses = exports.getCourse = exports.createNewCourse = void 0;
+exports.searchCourses = exports.updateCourse = exports.getCourses = exports.getCourse = exports.createNewCourse = void 0;
 const course_1 = __importDefault(require("../../../models/course"));
 const createNewCourse = (req, next) => __awaiter(void 0, void 0, void 0, function* () {
     //   const uploadUrl = await uploadVideo(req, next);
@@ -31,3 +31,13 @@ const getCourses = () => __awaiter(void 0, void 0, void 0, function* () {
 exports.getCourses = getCourses;
 const updateCourse = () => __awaiter(void 0, void 0, void 0, function* () { });
 exports.updateCourse = updateCourse;
+const searchCourses = (searchQuery) => __awaiter(void 0, void 0, void 0, function* () {
+    const { query } = searchQuery;
+    let regex = new RegExp("^" + query, "i");
+    const result = yield course_1.default.find({
+        $or: [{ name: regex }, { instructor: regex }],
+    });
+    console.log(result);
+    return result;
+});
+exports.searchCourses = searchCourses;

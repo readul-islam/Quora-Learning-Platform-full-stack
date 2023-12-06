@@ -66,6 +66,6 @@ const courseSchema = new Schema<TCourse>({
     default: 0,
   },
 });
-
+// courseSchema.index({name: 'text', instructor: 'text'});
 const Course = model<TCourse>("course", courseSchema);
 export default Course;

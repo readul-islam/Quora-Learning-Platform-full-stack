@@ -61,5 +61,16 @@ class CourseController {
             catch (error) { }
         });
     }
+    searchCourses(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const courses = yield (0, service_1.searchCourses)(req.query);
+                (0, common_handler_1.SuccessResponse)(res, courses, "Courses fetched successfully");
+            }
+            catch (error) {
+                next(error);
+            }
+        });
+    }
 }
 exports.default = new CourseController();

@@ -3,8 +3,8 @@ import uploadVideo from "../../../hooks/uploadVideo";
 import Course from "../../../models/course";
 
 const createNewCourse = async (req: Request, next: NextFunction) => {
-//   const uploadUrl = await uploadVideo(req, next);
-// console.log(uploadUrl)
+  //   const uploadUrl = await uploadVideo(req, next);
+  // console.log(uploadUrl)
   const course = await Course.create({
     ...req.body,
     // introUrl: uploadUrl,
@@ -23,4 +23,17 @@ const getCourses = async () => {
 
 const updateCourse = async () => {};
 
-export { createNewCourse, getCourse, getCourses, updateCourse };
+const searchCourses = async (searchQuery: any) => {
+  const { query } = searchQuery;
+
+  let regex = new RegExp("^" + query, "i");
+
+  const result = await Course.find({
+    $or: [{ name: regex }, { instructor: regex }],
+  });
+  console.log(result);
+
+  return result;
+};
+
+export { createNewCourse, getCourse, getCourses, updateCourse, searchCourses };

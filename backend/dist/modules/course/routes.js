@@ -15,5 +15,7 @@ courseRouter.get("/list", Course_1.default.getCourses);
 // 
 courseRouter.get("/", Course_1.default.getCourse);
 // 
+courseRouter.get("/search", Course_1.default.searchCourses);
+// 
 router.use("/course", courseRouter);
 exports.default = router;

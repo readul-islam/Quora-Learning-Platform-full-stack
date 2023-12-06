@@ -1,19 +1,21 @@
 import React, { useState } from "react";
+import { searchCourses } from "./api";
 
-const SearchBar = () => {
+const SearchBar = ({ setCourses }) => {
   const [selectCategory, setSelectCategory] = useState("All Categories");
   const [open, setOpen] = useState(false);
   const categories = ["Frontend", "Backend"];
+  const handleOnChangeSearchHandler = async (e) => {
+    const result = await searchCourses(e.target.value);
+    if (result.data[0]) {
+      setCourses(result.data);
+    }
+  };
+ 
   return (
     <>
       <form>
         <div class="flex relative">
-          <label
-            for="search-dropdown"
-            class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
-          >
-            Your Email
-          </label>
           <button
             onClick={() => setOpen(!open)}
             data-dropdown-toggle="dropdown"
@@ -64,6 +66,8 @@ const SearchBar = () => {
 
           <div class="relative w-full">
             <input
+              onChange={handleOnChangeSearchHandler}
+              name="search"
               type="search"
               id="search-dropdown"
               class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-0 focus:outline-none"

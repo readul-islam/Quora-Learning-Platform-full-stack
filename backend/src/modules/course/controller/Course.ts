@@ -8,6 +8,7 @@ import {
   createNewCourse,
   getCourse,
   getCourses,
+  searchCourses,
   updateCourse,
 } from "../service";
 
@@ -26,7 +27,7 @@ class CourseController {
   }
   async getCourse(req: Request, res: Response, next: NextFunction) {
     try {
-      const course = await getCourse(req.query as{courseId:string});
+      const course = await getCourse(req.query as { courseId: string });
       if (course) {
         SuccessResponse(res, course, "Course created successfully");
       } else {
@@ -46,6 +47,14 @@ class CourseController {
     try {
       const course = await updateCourse();
     } catch (error) {}
+  }
+  async searchCourses(req: Request, res: Response, next: NextFunction) {
+    try {
+      const courses = await searchCourses(req.query);
+      SuccessResponse(res, courses, "Courses fetched successfully");
+    } catch (error) {
+      next(error);
+    }
   }
 }
 
