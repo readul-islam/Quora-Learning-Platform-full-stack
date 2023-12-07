@@ -11,6 +11,7 @@ import {
   persistReducer,
   persistStore,
 } from 'redux-persist';
+import cartReducer from './cartSlice';
 
 const persistConfig = {
   key: 'root',
@@ -20,10 +21,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   authentication: authReducer,
-  //   companyData: companyReducer,
-  //   modalManage: modalReducer,
-  //   vendorFormData: vendorFormReducer,
-  //   employeeFormData: employeeFormReducer,
+  cart:cartReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

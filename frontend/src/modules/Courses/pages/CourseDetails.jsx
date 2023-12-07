@@ -11,11 +11,12 @@ import { getCourseById, isEnrolled, userEnrollInCourse } from '../api';
 import CourseContent from '../components/CourseContent';
 
 import ReactPlayer from 'react-player';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PrimaryBtn from '../../../components/PrimaryBtn';
 import CourseHeaderInfo from '../components/CourseHeaderInfo';
 import Skeleton from '../components/Skeleton';
 import toast from 'react-hot-toast';
+import { addToCart } from '../../../store/cartSlice';
 
 const Course = () => {
   const [courseDetails, setCourseDetails] = useState({});
@@ -27,13 +28,18 @@ const Course = () => {
   const [requirements, setRequirements] = useState([]);
   const [description, setDescription] = useState('');
   const [seeMoreDescription, setSeeMoreDescription] = useState(false);
+  const [isExistOnCart, setIsExistOnCart] = useState(false);
   const { courseId } = useParams();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const {
-    isLoggedIn,
-    userInfo: { userId, email },
-  } = useSelector((state) => state.authentication);
+    authentication: {
+      isLoggedIn,
+      userInfo: { userId, email },
+    },
+    cart: { error, cartItems },
+  } = useSelector((state) => state);
   // check at first this course already exist in user enrollment
   useEffect(() => {
     const fetchIsExist = async () => {
@@ -70,6 +76,18 @@ const Course = () => {
     fetchData();
   }, [courseId]);
 
+  useEffect(() => {
+    // check this item already exist in cart items or not
+    const exist = cartItems.find((item) => item._id === courseDetails._id);
+    console.log(courseDetails._id);
+    console.log(exist);
+    if (exist) {
+      setIsExistOnCart(true);
+    } else {
+      setIsExistOnCart(false);
+    }
+  }, [courseDetails, cartItems]);
+
   // enrollment handler
   const enrollCourseHandler = async () => {
     // if user not logged in user will be redirect register page
@@ -96,6 +114,16 @@ const Course = () => {
     } catch (error) {
       toast.error('something went wrong');
     }
+  };
+
+  // add course in cart
+  const addToCartHandler = (course) => {
+    dispatch(
+      addToCart({
+        ...course,
+        price: 15.99,
+      }),
+    );
   };
 
   return (
@@ -147,7 +175,10 @@ const Course = () => {
                   </h2>
                   <div className="px-2">
                     <PrimaryBtn
-                      disabled={isEnrolledCourse ? true : false}
+                      onClickHandler={() => addToCartHandler(courseDetails)}
+                      disabled={
+                        isEnrolledCourse || isExistOnCart ? true : false
+                      }
                       style="rounded-none border-secondary  w-full text-lg mb-2 hover:bg-gray-600 text-white mt-4 "
                     >
                       Add to cart
