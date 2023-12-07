@@ -39,4 +39,9 @@ export interface UserModel extends Model<TUserSchema> {
   isUserExists(id: string): Promise<TUserSchema | null>;
 }
 
-export { TUserController, TUserFullName, TUserAddress, TUserSchema };
+type TAuth = {
+  login(req: Request, res: Response, next: NextFunction): void;
+  register(req: Request, res: Response, next: NextFunction): void;
+};
+
+export { TUserController, TUserFullName, TUserAddress,TAuth, TUserSchema };

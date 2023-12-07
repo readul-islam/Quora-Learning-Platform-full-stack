@@ -6,7 +6,9 @@ const appRouter = express.Router();
 
 // user routes 
 appRouter.use(userRoutes)
+// course routes
 appRouter.use(courseRoutes)
+// enrollment routes
 appRouter.use(enrollmentRoutes)
 
 

@@ -2,15 +2,11 @@ import { NextFunction, Request, Response } from "express";
 import generateSignInToken from "../../../hooks/generateSignInToken";
 import { SuccessResponse } from "../../../middleware";
 import { AppError } from "../../../utils";
+import { TAuth } from "../helper/user.interface";
 import userValidator from "../helper/user.validator";
 import { authenticateUser, createNewUser } from "../service";
 
-type TAuth = {
-  login(req: Request, res: Response, next: NextFunction): void;
-  register(req: Request, res: Response, next: NextFunction): void;
-};
-
-class Auth {
+class Auth implements TAuth {
   async login(req: Request, res: Response, next: NextFunction) {
     try {
       const result = userValidator.validate(req.body);

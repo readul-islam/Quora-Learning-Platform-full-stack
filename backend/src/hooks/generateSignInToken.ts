@@ -1,8 +1,5 @@
 import jwt from "jsonwebtoken";
 import { access_secret_token, refresh_secret_token } from "../config";
-import { TUserSchema } from "../modules/user/helper/user.interface";
-import { Schema, mongo } from "mongoose";
-
 
 function generateSignInToken(userInstance: any, expiryHour = 2) {
   //creating a access token

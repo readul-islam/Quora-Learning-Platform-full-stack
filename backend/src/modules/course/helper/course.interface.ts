@@ -1,3 +1,5 @@
+import { NextFunction, Request, Response } from "express";
+
 type TVideo = {
   title: string;
   videoUrl: string;
@@ -23,4 +25,15 @@ type TCourse = {
   syllabus: Array<TSyllabus>;
   totalReaction: number;
 };
-export { TCourse, TStatus, TSyllabus, TVideo };
+
+
+type TCourseController={
+  createNewCourse:(req: Request, res: Response, next: NextFunction)=>void
+  getCourse:(req: Request, res: Response, next: NextFunction)=>void
+  getCourses:(req: Request, res: Response, next: NextFunction)=>void
+  uploadCourseSyllabusVideo:(req: Request, res: Response, next: NextFunction)=>void
+  searchCourses:(req: Request, res: Response, next: NextFunction)=>void
+}
+
+
+export { TCourse, TStatus, TSyllabus, TVideo,TCourseController };

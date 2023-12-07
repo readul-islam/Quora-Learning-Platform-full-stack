@@ -6,8 +6,10 @@ import {
   isEnrolled,
   userEnrollInCourse,
 } from "../service";
+import { TEnrollmentController } from "../helper/enrollment.interface";
 
-class EnrollmentController {
+class EnrollmentController implements TEnrollmentController {
+  // user enrolling a new course
   async userEnrollInCourse(req: Request, res: Response, next: NextFunction) {
     try {
       const enroll = await userEnrollInCourse(req.body);
@@ -20,6 +22,7 @@ class EnrollmentController {
       next(error);
     }
   }
+  // get all enrolled course by user id
   async getEnrolledCourseByUserId(
     req: Request,
     res: Response,
@@ -32,14 +35,22 @@ class EnrollmentController {
       next(error);
     }
   }
+  // check is user already enrolled in this course or not
   async isEnrolled(req: Request, res: Response, next: NextFunction) {
     try {
-        
-        const exist = await isEnrolled(req.query);
+      const exist = await isEnrolled(req.query);
       if (exist) {
-        SuccessResponse(res, { isExist: true }, "You're already enrolled in course.");
-      }else{
-        SuccessResponse(res, { isExist: false }, "You're not enrolled in course");
+        SuccessResponse(
+          res,
+          { isExist: true },
+          "You're already enrolled in course."
+        );
+      } else {
+        SuccessResponse(
+          res,
+          { isExist: false },
+          "You're not enrolled in course"
+        );
       }
     } catch (error) {
       next(error);
@@ -47,4 +58,4 @@ class EnrollmentController {
   }
 }
 
-export default new EnrollmentController;
+export default new EnrollmentController();
