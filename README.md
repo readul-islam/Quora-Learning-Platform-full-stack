@@ -62,6 +62,6 @@ or if you globally installed typescript
 tsc -w
 ```
 
-<!-- ## Live Link
+## Live Link Backend [courses api]
 
-[Live Link](https://backend-mongoose.onrender.com) -->
+[Live Link](https://quora-backend-dl6q.onrender.com/api/course/list)

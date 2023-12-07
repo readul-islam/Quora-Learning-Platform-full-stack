@@ -3,7 +3,7 @@ import store from '../store';
 import { logIn } from '../store/authenticationSlice';
 
 const quora = axios.create({
-  baseURL: 'http://localhost:5000',
+  baseURL: 'https://quora-backend-dl6q.onrender.com',
 
   withCredentials: true,
 });
