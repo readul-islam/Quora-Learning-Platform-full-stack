@@ -6,6 +6,7 @@ import { SIGN_IN_INITIAL_VALUES } from '../constants';
 import { logInApi } from '../api/auth';
 import { logIn } from '../../../store/authenticationSlice';
 import { useDispatch } from 'react-redux';
+import toast from 'react-hot-toast';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -16,6 +17,9 @@ const Login = () => {
     try {
       const { email, password } = values;
       const res = await logInApi({ email, password });
+
+      toast.success('Login successful');
+
       localStorage.setItem('refresh-token', res.data.refreshToken);
       const payload = {
         token: res?.data?.token,
@@ -27,7 +31,7 @@ const Login = () => {
       dispatch(logIn(payload));
       navigate('/', { replace: true });
     } catch (error) {
-      alert(err?.response?.data);
+      toast.error(`Invalid credentials:${error.response.status}`);
     }
   };
 
@@ -46,11 +50,11 @@ const Login = () => {
       >
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left lg:px-8 px-0 text-white">
-            <h1 className="text-5xl font-bold">Login now!</h1>
-            <p className="py-6  text-2xl font-semibold ">
+            <h1 className="text-5xl hidden md:block font-bold">Login now!</h1>
+            <p className="md:py-6  text-2xl font-semibold ">
               Online Learning Now In Your Fingertips
             </p>
-            <p className="  text-xl  ">
+            <p className=" hidden md:block text-xl  ">
               Quora is a online learning platform that offers various premium
               courses for your skill development
             </p>

@@ -7,6 +7,7 @@ import { SIGN_IN_FORM_VALIDATE_SCHEMA } from '../schema';
 import { registerApi } from '../api/auth';
 import { logIn } from '../../../store/authenticationSlice';
 import { useDispatch } from 'react-redux';
+import toast from 'react-hot-toast';
 
 const Register = () => {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ const Register = () => {
     try {
       const { email, password } = values;
       const res = await registerApi({ email, password });
-      console.log(res);
+      toast.success('Registration successful');
       const payload = {
         token: res?.data?.token,
         userInfo: {
@@ -28,7 +29,7 @@ const Register = () => {
       dispatch(logIn(payload));
       navigate('/', { replace: true });
     } catch (error) {
-      alert(err?.response?.data);
+      toast.error(`something went wrong:${error.response.status}`);
     }
   };
 
@@ -48,11 +49,13 @@ const Register = () => {
       >
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left lg:px-8 px-0 text-white">
-            <h1 className="text-5xl font-bold">Register now!</h1>
-            <p className="py-6  text-2xl font-semibold ">
+            <h1 className="text-5xl hidden md:block font-bold">
+              Register now!
+            </h1>
+            <p className="md:py-6  text-2xl font-semibold ">
               Online Learning Now In Your Fingertips
             </p>
-            <p className="  text-xl  ">
+            <p className="  text-xl hidden md:block  ">
               Quora is a online learning platform that offers various premium
               courses for your skill development
             </p>

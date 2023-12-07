@@ -15,6 +15,7 @@ import { useSelector } from 'react-redux';
 import PrimaryBtn from '../../../components/PrimaryBtn';
 import CourseHeaderInfo from '../components/CourseHeaderInfo';
 import Skeleton from '../components/Skeleton';
+import toast from 'react-hot-toast';
 
 const Course = () => {
   const [courseDetails, setCourseDetails] = useState({});
@@ -33,7 +34,7 @@ const Course = () => {
     isLoggedIn,
     userInfo: { userId, email },
   } = useSelector((state) => state.authentication);
-// check at first this course already exist in user enrollment
+  // check at first this course already exist in user enrollment
   useEffect(() => {
     const fetchIsExist = async () => {
       const res = await isEnrolled({ userId, courseId: courseId });
@@ -69,7 +70,6 @@ const Course = () => {
     fetchData();
   }, [courseId]);
 
-
   // enrollment handler
   const enrollCourseHandler = async () => {
     // if user not logged in user will be redirect register page
@@ -91,11 +91,10 @@ const Course = () => {
       };
 
       const enrolling = await userEnrollInCourse(enrollmentData);
+      toast.success('Enroll successful');
       setReload(!reload);
     } catch (error) {
-      if (error.code === 'ERR_BAD_REQUEST') {
-        alert('Already enrolled in this course');
-      }
+      toast.error('something went wrong');
     }
   };
 
@@ -134,7 +133,10 @@ const Course = () => {
                   </div>
                 )}
                 <div className="px-2 py-4">
-                  <CourseHeaderInfo style='lg:hidden px-2 lg:px-0 !text-black' courseDetails={courseDetails}/>
+                  <CourseHeaderInfo
+                    style="lg:hidden px-2 lg:px-0 !text-black"
+                    courseDetails={courseDetails}
+                  />
                   <h2 className="font-bold px-2 text-3xl flex items-center gap-2">
                     <span> $15 </span>
                     <span className="line-through text-sm text-gray-500">

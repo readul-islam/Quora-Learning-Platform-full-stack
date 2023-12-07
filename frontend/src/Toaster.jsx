@@ -14,19 +14,23 @@ const Toaster = () => {
       toastOptions={{
         // Define default options
         className: '',
-        duration: 3000,
+        duration: 2000,
         style: {
-          background: '#363636',
-          color: '#fff',
-          padding: '16px',
+          background: '#fff',
+          color: '#363636',
+          padding: '10px 16px',
         },
         // Default options for specific types
         success: {
-          duration: 4000,
+          duration: 2000,
           theme: {
             primary: 'green',
             secondary: 'black',
           },
+        },
+        error: {
+          duration: 4000,
+         
         },
       }}
     />
