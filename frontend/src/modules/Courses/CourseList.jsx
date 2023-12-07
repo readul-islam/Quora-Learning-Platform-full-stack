@@ -8,9 +8,7 @@ const CourseList = () => {
   const [selectedCourse, setSelectedCourse] = useState(false);
   const [courses, setCourses] = useState([]);
   const navigate = useNavigate();
-  const list = [
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
-  ];
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,9 +26,9 @@ const CourseList = () => {
         <p className="font-semibold text-xl mt-4 ">Courses</p>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3  xl:grid-cols-5  gap-x-10 content-center gap-y-8 mt-4  ">
           {!isEmpty(courses) &&
-            courses.map((course) => (
+            courses.map((course,index) => (
               <>
-                <div
+                <div key={index}
                   onClick={() =>
                     navigate(`/course/${course.name}/${course._id}`)
                   }
@@ -57,7 +55,7 @@ const CourseList = () => {
                           type="radio"
                           name="rating-1"
                           className="mask mask-star"
-                          checked
+                         
                         />
                         <input
                           type="radio"

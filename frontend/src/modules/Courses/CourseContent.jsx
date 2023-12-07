@@ -25,11 +25,11 @@ const CourseContent = ({
     <div>
       <div className="pb-4 pl-1">
         <p className="text-xl font-semibold pb-2">Course content</p>
-        <div className="flex justify-between">
-          <p className=" text-md">
+        <div className="md:flex  justify-between">
+          <p className=" md:text-md text-sm">
             23 sections • 156 lectures • 22h 13m total length
           </p>
-          <p className="text-md font-semibold">Expand all section</p>
+          <p className="md:text-md text-sm font-semibold ">Expand all section</p>
         </div>
       </div>
       <CustomAccordion syllabus={syllabus} />
@@ -45,13 +45,13 @@ const CourseContent = ({
       <div className="my-6 ">
         <h3 className="text-xl font-semibold mb-2">Requirements</h3>
         {!isEmpty(requirements) &&
-          requirements.map((requirement) => (
-            <>
-              <div className=" px-4 mb-3 flex items-center gap-2">
+          requirements.map((requirement,index) => (
+          
+              <div key={index} className=" px-4 mb-3 flex items-center gap-2">
                 <div className="h-2 w-2 rounded-full bg-black" />
                 <p>{requirement}</p>
               </div>
-            </>
+          
           ))}
       </div>
 

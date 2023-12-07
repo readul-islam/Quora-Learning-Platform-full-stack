@@ -15,9 +15,9 @@ const CustomAccordion = ({ syllabus, setVideoUrl }) => {
     <>
       {!isEmpty(syllabus) ? (
         <Accordion allowZeroExpanded={true} allowMultipleExpanded={true}>
-          {syllabus.map((course) => (
-            <>
-              <AccordionItem className=" ">
+          {syllabus.map((course, index) => (
+          
+              <AccordionItem  key={index}  className=" ">
                 <AccordionItemHeading>
                   <AccordionItemButton>{course.topic}</AccordionItemButton>
                 </AccordionItemHeading>
@@ -35,8 +35,9 @@ const CustomAccordion = ({ syllabus, setVideoUrl }) => {
                   </AccordionItemPanel>
                 ) : (
                   <>
-                    {course.videos.map((video) => (
+                    {course.videos.map((video,index) => (
                       <AccordionItemPanel
+                      key={index}
                         onClick={() => setVideoUrl(video.videoUrl)}
                         className="py-3 cursor-pointer border-b px-4"
                       >
@@ -52,7 +53,7 @@ const CustomAccordion = ({ syllabus, setVideoUrl }) => {
                   </>
                 )}
               </AccordionItem>
-            </>
+        
           ))}
         </Accordion>
       ) : (

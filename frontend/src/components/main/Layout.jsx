@@ -21,7 +21,7 @@ const Layout = () => {
   return (
     <>
       <Navbar />
-      <div className="bg-gradient-to-tr min-h-screen from-accent to-neutral ">
+      <div className="bg-gradient-to-tr mt-2 min-h-screen from-accent to-neutral ">
         <Routes>{renderRoutes}</Routes>
       </div>
       <Footer />

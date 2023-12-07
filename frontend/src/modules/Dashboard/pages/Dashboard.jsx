@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { getCourseListByUserId } from '../api';
-import { useSelector } from 'react-redux';
 import { isEmpty } from 'lodash';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { getCourseListByUserId } from '../api';
 import VideoSkeleton from '../components/VideoSkeleton';
 
 const Dashboard = () => {
@@ -43,16 +43,19 @@ const Dashboard = () => {
 
   return (
     <div className="">
-      <div className="max-w-7xl mx-auto pt-10 h-full ">
-        <h3 className="text-xl md:text-3xl lg:text-4xl pb-6 text-secondary font-bold font-serif">
+      <div className="max-w-7xl mx-auto  py-10 h-full  ">
+        <h3 className="text-xl px-4 md:text-3xl lg:text-4xl pb-6 text-secondary font-bold font-serif">
           Welcome Back MD Readul Islam, Ready For Your Next Lesson?
         </h3>
-        <div className=" grid grid-cols-1 xl:grid-cols-2 lg:px-0 md:px-24 px-3 gap-4">
+        <div className=" grid grid-cols-1 xl:grid-cols-2 lg:px-4 xl:px-0 md:px-24 px-3 gap-4">
           {!isEmpty(userCourseList) &&
-            userCourseList.map((course) => (
+            userCourseList.map((course, index) => (
               <>
-                <div className="md:flex  flex-1 align-top bg-base-100 shadow-xl p-4 rounded border">
-                  <figure className="flex-1 border border-gray-200 rounded">
+                <div
+                  key={index}
+                  className="md:flex  flex-1 align-top bg-base-100 shadow-xl p-4 rounded border"
+                >
+                  <figure className="flex-1 lg:flex-none xl:flex-1 border border-gray-200 rounded">
                     <img
                       className="w-96 h-[186px]"
                       src={`${course.thumbnail}`}
@@ -83,13 +86,13 @@ const Dashboard = () => {
                           );
                         }}
                         type="button"
-                        class="bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg py-1.5 px-2 text-white"
+                        className="bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg py-1.5 px-2 text-white"
                       >
                         Continue
                       </button>
                       <button
                         type="button"
-                        class="bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg py-1.5 px-4 text-white"
+                        className="bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg py-1.5 px-4 text-white"
                       >
                         Outline
                       </button>

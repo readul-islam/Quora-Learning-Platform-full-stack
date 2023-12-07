@@ -14,6 +14,7 @@ import ReactPlayer from 'react-player';
 import Skeleton from './Skeleton';
 import PrimaryBtn from '../../components/PrimaryBtn';
 import { useSelector } from 'react-redux';
+import CourseHeaderInfo from './CourseHeaderInfo';
 
 const Course = () => {
   const [courseDetails, setCourseDetails] = useState({});
@@ -98,59 +99,13 @@ const Course = () => {
     <>
       {courseDetails.hasOwnProperty('name') ? (
         <>
-          <div className="bg-gray-800">
-            <div className="max-w-6xl mx-auto relative py-10 px-2">
-              {}{' '}
-              <div className="text-white max-w-2xl space-y-3">
-                <p>{`Development > Programming Languages > Python `}</p>
-
-                <h3 className="text-4xl font-semibold">{courseDetails.name}</h3>
-                <p className="text-lg">{courseDetails.description}</p>
-                <div className="flex items-center gap-1 pt-1">
-                  <p className="font-semibold">4.6</p>
-                  <div className="rating rating-xs">
-                    <input
-                      type="radio"
-                      name="rating-1"
-                      className="mask mask-star bg-orange-400"
-                    />
-                    <input
-                      type="radio"
-                      name="rating-1"
-                      className="mask mask-star bg-orange-400"
-                      checked
-                    />
-                    <input
-                      type="radio"
-                      name="rating-1"
-                      className="mask mask-star bg-orange-400"
-                    />
-                    <input
-                      type="radio"
-                      name="rating-1"
-                      className="mask mask-star bg-orange-400"
-                    />
-                    <input
-                      type="radio"
-                      name="rating-1"
-                      className="mask mask-star bg-orange-400"
-                    />
-                  </div>
-                  <p className="text-sm text-gray-500">
-                    (12440 rating) 1,825,167 students
-                  </p>
-                </div>
-                <p className="flex gap-8">
-                  <span>Created by {courseDetails.instructor}</span>
-                  {/* <span> last updated: 20/12/2023 </span>{" "} */}
-                </p>
-                <div className="flex  gap-8">
-                  <p>Enrollment: {courseDetails.enrollmentStatus} </p>
-                  <p>Duration: 6 month </p>
-                  <p>Location: Gurugram, India </p>
-                </div>
-              </div>
-              <div className="card z-50 bg-white shadow-xl min-h-[500px]  w-96 absolute cursor-pointer top-10 right-2">
+          <div className="lg:bg-gray-800">
+            <div className="max-w-6xl mx-auto lg:relative  py-10 px-2">
+              <CourseHeaderInfo
+                style="hidden lg:block"
+                courseDetails={courseDetails}
+              />
+              <div className="card lg:z-50   bg-white lg:shadow-xl lg:min-h-[500px] lg:absolute lg:w-96  cursor-pointer lg:top-10 lg:right-2">
                 {!runVideo && (
                   <figure className={`relative `}>
                     <img src={courseDetails.thumbnail} alt="car!" />
@@ -162,16 +117,20 @@ const Course = () => {
                   </figure>
                 )}
                 {runVideo && (
-                  <ReactPlayer
-                    playing
-                    width="385px"
-                    height="200px"
-                    muted={false}
-                    controls={true}
-                    url={courseDetails.introUrl}
-                  />
+                  <div className="wrapper">
+                    <ReactPlayer
+                      playing
+                      className="player"
+                      width="100%"
+                      height="100%"
+                      muted={false}
+                      controls={true}
+                      url={courseDetails.introUrl}
+                    />
+                  </div>
                 )}
                 <div className="px-2 py-4">
+                  <CourseHeaderInfo style='lg:hidden px-2 lg:px-0 !text-black' courseDetails={courseDetails}/>
                   <h2 className="font-bold px-2 text-3xl flex items-center gap-2">
                     <span> $15 </span>
                     <span className="line-through text-sm text-gray-500">
@@ -226,7 +185,7 @@ const Course = () => {
               </div>
             </div>
           </div>
-          <div className="max-w-6xl mx-auto mt-24 px-2">
+          <div className="max-w-6xl mx-auto lg:mt-16 px-2">
             <div className="max-w-2xl">
               <CourseContent
                 setSyllabusMoreSection={setSyllabusMoreSection}
