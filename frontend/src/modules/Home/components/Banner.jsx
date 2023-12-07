@@ -4,8 +4,8 @@ import { MdOutlineSlowMotionVideo } from 'react-icons/md';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import gril from '../../assets/banner-gril.png';
-import PrimaryBtn from '../../components/PrimaryBtn';
+import gril from '../../../assets/banner-gril.png';
+import PrimaryBtn from '../../../components/PrimaryBtn';
 
 const Banner = () => {
   const imgVariants = {

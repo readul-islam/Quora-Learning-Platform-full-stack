@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { getCourseById } from '../../Courses/api';
 import { MdOutlineSlowMotionVideo } from 'react-icons/md';
 import ReactPlayer from 'react-player';
-import CustomAccordion from '../../Courses/CustomAccordion';
+import CustomAccordion from '../../Courses/components/CustomAccordion';
 
 const ContentPlayer = () => {
   const { userId, courseId } = useParams();

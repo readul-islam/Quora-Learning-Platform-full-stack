@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { MdOndemandVideo } from 'react-icons/md';
-import { HiOutlineFolderDownload } from 'react-icons/hi';
 import { CiMobile1 } from 'react-icons/ci';
-import { SiOpenaccess } from 'react-icons/si';
 import { GiPodiumWinner } from 'react-icons/gi';
+import { HiOutlineFolderDownload } from 'react-icons/hi';
+import { MdOndemandVideo } from 'react-icons/md';
+import { SiOpenaccess } from 'react-icons/si';
 
 import { MdOutlineSlowMotionVideo } from 'react-icons/md';
 import { useNavigate, useParams } from 'react-router-dom';
-import CourseContent from './CourseContent';
-import { getCourseById, isEnrolled, userEnrollInCourse } from './api';
+import { getCourseById, isEnrolled, userEnrollInCourse } from '../api';
+import CourseContent from '../components/CourseContent';
 
 import ReactPlayer from 'react-player';
-import Skeleton from './Skeleton';
-import PrimaryBtn from '../../components/PrimaryBtn';
 import { useSelector } from 'react-redux';
-import CourseHeaderInfo from './CourseHeaderInfo';
+import PrimaryBtn from '../../../components/PrimaryBtn';
+import CourseHeaderInfo from '../components/CourseHeaderInfo';
+import Skeleton from '../components/Skeleton';
 
 const Course = () => {
   const [courseDetails, setCourseDetails] = useState({});

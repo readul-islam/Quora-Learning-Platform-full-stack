@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import React from 'react';
 import { Pie, PieChart, Tooltip } from 'recharts';
-import PrimaryBtn from '../../components/PrimaryBtn';
+import PrimaryBtn from '../../../components/PrimaryBtn';
 
 const data01 = [
   { name: 'Group A', value: 400 },
@@ -70,7 +70,7 @@ const ChartSection = () => {
             architecto dignissimos ab commodi ea?
           </h1>
           <div>
-            <PrimaryBtn>Try Now</PrimaryBtn>{' '}
+            <PrimaryBtn style='text-white'>Try Now</PrimaryBtn>{' '}
           </div>
         </motion.div>
       </div>

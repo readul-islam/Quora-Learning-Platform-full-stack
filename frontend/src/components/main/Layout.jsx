@@ -1,8 +1,8 @@
 import React from 'react';
-import Navbar from '../Navbar';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import Footer from '../Footer';
+import Navbar from '../Navbar';
 import routes from './routes';
-import { Route, Routes, useLocation, useParams } from 'react-router-dom';
 
 const Layout = () => {
   const params = useLocation();

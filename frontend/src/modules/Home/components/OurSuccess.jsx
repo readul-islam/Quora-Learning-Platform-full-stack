@@ -45,26 +45,26 @@ const OurSuccess = () => {
       </h1>
       <div className="divider mx-auto bg-red-500 h-[2px] w-32 mb-12"></div>
       <div className="grid grid-cols-1 text-white md:grid-cols-2 lg:grid-cols-4 gap-4 content-center  text-center max-w-7xl mx-auto">
-        <div className="flex flex-col mx-6 py-6 bg-gradient-to-r from-[#0D0541]/95 to-[#0D0541]  rounded-box ">
-          <span className="font-mono text-5xl">
+        <div className="flex flex-col mx-6  py-6 bg-gradient-to-r  border text-black   ">
+          <span className="font-mono  text-2xl md:text-3xl lg:text-4xl xl:text-5xl">
             <span id="student"></span>
           </span>
           <span className="font-semibold font-mono">student</span>
         </div>
-        <div className="flex flex-col py-6 mx-6 bg-gradient-to-r from-[#0D0541]/95 to-[#0D0541] rounded-box ">
-          <span className=" font-mono text-5xl">
+        <div className="flex flex-col py-6 mx-6 bg-gradient-to-r  border text-black  ">
+          <span className=" font-mono  text-2xl md:text-3xl lg:text-4xl xl:text-5xl">
             <span id="intership"> </span>
           </span>
           <span className="font-semibold font-mono">InternShip</span>
         </div>
-        <div className="flex flex-col py-6 mx-6 bg-gradient-to-r from-[#0D0541]/95 to-[#0D0541]   rounded-box ">
-          <span className=" font-mono text-5xl">
+        <div className="flex flex-col py-6 mx-6 bg-gradient-to-r  border text-black    ">
+          <span className=" font-mono  text-2xl md:text-3xl lg:text-4xl xl:text-5xl">
             <span id="job"></span>
           </span>
           <span className="font-semibold font-mono">Job</span>
         </div>
-        <div className="flex flex-col py-6 mx-6 bg-gradient-to-r from-[#0D0541]/95 to-[#0D0541]   rounded-box ">
-          <span className="font-mono text-5xl">
+        <div className="flex flex-col py-6 mx-6 bg-gradient-to-r  border text-black    ">
+          <span className="font-mono  text-2xl md:text-3xl lg:text-4xl xl:text-5xl">
             <span id="hairing"></span>
           </span>
           <span className="font-semibold font-mono">Hairing</span>

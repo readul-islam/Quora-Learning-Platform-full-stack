@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import CustomAccordion from './CustomAccordion';
 import { isEmpty } from 'lodash';
+import React from 'react';
+import CustomAccordion from './CustomAccordion';
 
 const CourseContent = ({
   requirements,

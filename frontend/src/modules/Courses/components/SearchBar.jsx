@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { searchCourses } from './api';
+import { searchCourses } from '../api';
 
 const SearchBar = ({ setCourses }) => {
   const [selectCategory, setSelectCategory] = useState('All Categories');

@@ -1,14 +1,20 @@
+import { motion } from 'framer-motion';
 import React, { useEffect, useState } from 'react';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+// import required modules
+import { Pagination } from 'swiper/modules';
 import { useNavigate } from 'react-router-dom';
-import SearchBar from './SearchBar';
-import { isEmpty } from 'lodash';
-import Navbar from '../../components/Navbar';
-import { getCourseList } from './api';
-const CourseList = () => {
+import { getCourseList } from '../../Courses/api';
+
+const PopularCourse = () => {
   const [selectedCourse, setSelectedCourse] = useState(false);
   const [courses, setCourses] = useState([]);
   const navigate = useNavigate();
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,22 +25,69 @@ const CourseList = () => {
     fetchData();
   }, []);
 
+  const data = [
+    {
+      id: 1,
+      name: 'UI Design Basics',
+      img: 'https://www.pngitem.com/pimgs/m/171-1710609_digital-design-icon-png-transparent-png.png',
+    },
+    {
+      id: 2,
+      name: 'UI Design Basics',
+      img: 'https://www.pngitem.com/pimgs/m/171-1710609_digital-design-icon-png-transparent-png.png',
+    },
+    {
+      id: 3,
+      name: 'UI Design Basics',
+      img: 'https://www.pngitem.com/pimgs/m/171-1710609_digital-design-icon-png-transparent-png.png',
+    },
+    {
+      id: 4,
+      name: 'UI Design Basics',
+      img: 'https://www.pngitem.com/pimgs/m/171-1710609_digital-design-icon-png-transparent-png.png',
+    },
+  ];
   return (
-    <>
-      <div className="px-12 py-6 ">
-        <SearchBar setCourses={setCourses} />
-        <p className="font-semibold text-xl mt-4 ">Courses</p>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3  xl:grid-cols-5  gap-x-10 content-center gap-y-8 mt-4  ">
-          {!isEmpty(courses) &&
-            courses.map((course,index) => (
-              <>
-                <div key={index}
-                  onClick={() =>
-                    navigate(`/course/${course.name}/${course._id}`)
-                  }
-                  className="card glass cursor-pointer"
-                >
-                  <figure>
+    <section className="bg-gradient-to-tr py-24 from-neutral to-accent ">
+      <div className="max-w-7xl mx-auto ">
+        <h1 className="text-2xl md:text-3xl lg:text-4xl pb-10 text-secondary font-bold font-serif text-center ">
+          Our Popular Course
+        </h1>
+        <motion.div
+          className="mx-6 md:mx-0"
+          initial={{ y: 50, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.5, duration: 0.8 }}
+        >
+          <Swiper
+            className="py-10 lg:px-10 md:px-3 xl:px-0"
+            spaceBetween={40}
+            modules={[Pagination]}
+            freeMode={true}
+            breakpoints={{
+              768: {
+                slidesPerView: 2,
+              },
+
+              1024: {
+                slidesPerView: 2,
+              },
+              1440: {
+                slidesPerView: 3,
+              },
+            }}
+            loop={true}
+            grabCursor={true}
+          >
+            {courses.map((course, index) => (
+              <SwiperSlide key={index}>
+                <div className="card glass border md:h-96 ">
+                  <figure
+                    className="cursor-pointer"
+                    onClick={() =>
+                      navigate(`/course/${course.name}/${course._id}`)
+                    }
+                  >
                     <img src={course.thumbnail} alt="car!" />
                   </figure>
                   <div className="px-2 py-4">
@@ -55,7 +108,6 @@ const CourseList = () => {
                           type="radio"
                           name="rating-1"
                           className="mask mask-star"
-                         
                         />
                         <input
                           type="radio"
@@ -93,12 +145,13 @@ const CourseList = () => {
                     </div>
                   </div>
                 </div>
-              </>
+              </SwiperSlide>
             ))}
-        </div>
+          </Swiper>
+        </motion.div>
       </div>
-    </>
+    </section>
   );
 };
 
-export default CourseList;
+export default PopularCourse;

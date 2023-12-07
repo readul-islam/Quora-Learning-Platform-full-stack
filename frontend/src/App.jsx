@@ -1,15 +1,8 @@
 import { Route, Routes } from 'react-router-dom';
 import Toaster from './Toaster';
-import Home from './modules/Home/Home';
+import Layout from './components/main/Layout';
 import Login from './modules/Auth/pages/Login';
 import Register from './modules/Auth/pages/Register';
-import CourseList from './modules/Courses/CourseList';
-import Course from './modules/Courses/Course';
-import Dashboard from './modules/Dashboard/pages/Dashboard';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import Layout from './components/main/Layout';
-import ContentPlayer from './modules/Dashboard/pages/ContentPlayer';
 
 function App() {
   return (
