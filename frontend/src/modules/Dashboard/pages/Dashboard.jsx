@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { getCourseListByUserId } from '../api';
-import VideoSkeleton from '../components/VideoSkeleton';
+import DashboardSkeleton from '../components/DashboardSkeleton';
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -13,6 +13,7 @@ const Dashboard = () => {
     userInfo: { userId },
   } = useSelector((state) => state.authentication);
 
+  // fetch all courses for a specific user
   useEffect(() => {
     const fetchCourses = async () => {
       const res = await getCourseListByUserId({ userId: userId });
@@ -21,7 +22,7 @@ const Dashboard = () => {
     };
 
     fetchCourses();
-
+    //  if course not exist show content not found but it will some time later
     const useDebounce = () => {
       const handler = setTimeout(() => {
         if (isEmpty(userCourseList)) {
@@ -37,6 +38,7 @@ const Dashboard = () => {
     useDebounce();
   }, [userId]);
 
+  // navigator
   const navigateHandler = (user_id, course_id, courseName) => {
     navigate(`${courseName}/${user_id}/${course_id}`);
   };
@@ -105,8 +107,8 @@ const Dashboard = () => {
 
         {isEmpty(userCourseList) && !isUserNOCourse && (
           <div className="flex gap-24">
-            <VideoSkeleton />
-            <VideoSkeleton />
+            <DashboardSkeleton />
+            <DashboardSkeleton />
           </div>
         )}
         {isEmpty(userCourseList) && isUserNOCourse && (

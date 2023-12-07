@@ -33,7 +33,7 @@ const Course = () => {
     isLoggedIn,
     userInfo: { userId, email },
   } = useSelector((state) => state.authentication);
-
+// check at first this course already exist in user enrollment
   useEffect(() => {
     const fetchIsExist = async () => {
       const res = await isEnrolled({ userId, courseId: courseId });
@@ -42,6 +42,7 @@ const Course = () => {
     fetchIsExist();
   }, [reload]);
 
+  // get a specific course by courseId for showing all course details
   useEffect(() => {
     const fetchData = async () => {
       const res = await getCourseById(courseId);
@@ -68,7 +69,10 @@ const Course = () => {
     fetchData();
   }, [courseId]);
 
+
+  // enrollment handler
   const enrollCourseHandler = async () => {
+    // if user not logged in user will be redirect register page
     if (!isLoggedIn) {
       navigate('/register ');
     }

@@ -9,7 +9,7 @@ const CourseList = () => {
   const [courses, setCourses] = useState([]);
   const navigate = useNavigate();
 
-
+// fetch all courses from db
   useEffect(() => {
     const fetchData = async () => {
       const list = await getCourseList();

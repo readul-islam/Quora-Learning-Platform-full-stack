@@ -1,4 +1,7 @@
 import * as Yup from 'yup';
+
+// validate email and password
+// email will be 8 characters long and a special character a uppercase a lowercase and a number
 const SIGN_IN_FORM_VALIDATE_SCHEMA = Yup.object({
   /* (
           

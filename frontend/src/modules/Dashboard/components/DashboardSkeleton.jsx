@@ -1,6 +1,6 @@
 import React from 'react';
 
-const VideoSkeleton = () => {
+const DashboardSkeleton = () => {
   return (
     <>
       <div
@@ -32,4 +32,4 @@ const VideoSkeleton = () => {
   );
 };
 
-export default VideoSkeleton;
+export default DashboardSkeleton;

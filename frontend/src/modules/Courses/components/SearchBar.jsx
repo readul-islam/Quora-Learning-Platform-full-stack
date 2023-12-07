@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { searchCourses } from '../api';
 
 const SearchBar = ({ setCourses }) => {
+
   const [selectCategory, setSelectCategory] = useState('All Categories');
   const [open, setOpen] = useState(false);
   const categories = ['Frontend', 'Backend'];
+  // search handler
   const handleOnChangeSearchHandler = async (e) => {
     const result = await searchCourses(e.target.value);
     if (result.data[0]) {

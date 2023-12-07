@@ -15,6 +15,7 @@ const CourseContent = ({
   setDescription,
 }) => {
   console.log(syllabusMoreSection);
+  // handle more section
   const handleCountMoreSection = () => {
     setSyllabus(courseDetails.syllabus);
     setSyllabusMoreSection(0);
