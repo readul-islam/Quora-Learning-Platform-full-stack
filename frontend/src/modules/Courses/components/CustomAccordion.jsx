@@ -12,7 +12,7 @@ import { MdOutlineSlowMotionVideo } from 'react-icons/md';
 import { useLocation, useParams } from 'react-router-dom';
 const CustomAccordion = ({ syllabus, videoUrl, setVideoUrl }) => {
   const { userId, courseName } = useParams();
-  
+
   return (
     <>
       {!isEmpty(syllabus) ? (

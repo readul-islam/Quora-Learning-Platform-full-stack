@@ -30,7 +30,6 @@ const Toaster = () => {
         },
         error: {
           duration: 4000,
-         
         },
       }}
     />

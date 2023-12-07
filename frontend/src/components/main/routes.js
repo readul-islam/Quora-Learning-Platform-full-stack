@@ -11,7 +11,11 @@ const routes = [
   { id: uuidv4(), path: '/', component: Home },
   { id: uuidv4(), path: '/home', component: Home },
   { id: uuidv4(), path: '/courses', component: CourseList },
-  { id: uuidv4(), path: '/course/:courseName/:courseId', component: CourseDetails },
+  {
+    id: uuidv4(),
+    path: '/course/:courseName/:courseId',
+    component: CourseDetails,
+  },
   { id: uuidv4(), path: '/dashboard', component: Dashboard },
   {
     id: uuidv4(),

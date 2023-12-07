@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import SearchBar from '../components/SearchBar'
+import SearchBar from '../components/SearchBar';
 import { isEmpty } from 'lodash';
 
 import { getCourseList } from '../api';
@@ -9,7 +9,7 @@ const CourseList = () => {
   const [courses, setCourses] = useState([]);
   const navigate = useNavigate();
 
-// fetch all courses from db
+  // fetch all courses from db
   useEffect(() => {
     const fetchData = async () => {
       const list = await getCourseList();
@@ -26,9 +26,10 @@ const CourseList = () => {
         <p className="font-semibold text-xl mt-4 ">Courses</p>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3  xl:grid-cols-5  gap-x-10 content-center gap-y-8 mt-4  ">
           {!isEmpty(courses) &&
-            courses.map((course,index) => (
+            courses.map((course, index) => (
               <>
-                <div key={index}
+                <div
+                  key={index}
                   onClick={() =>
                     navigate(`/course/${course.name}/${course._id}`)
                   }
@@ -55,7 +56,6 @@ const CourseList = () => {
                           type="radio"
                           name="rating-1"
                           className="mask mask-star"
-                         
                         />
                         <input
                           type="radio"

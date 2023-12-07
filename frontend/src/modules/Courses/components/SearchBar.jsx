@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { searchCourses } from '../api';
 
 const SearchBar = ({ setCourses }) => {
-
   const [selectCategory, setSelectCategory] = useState('All Categories');
   const [open, setOpen] = useState(false);
   const categories = ['Frontend', 'Backend'];
@@ -50,7 +49,7 @@ const SearchBar = ({ setCourses }) => {
                 className={`py-2text-sm text-gray-700 dark:text-gray-200    `}
                 aria-labelledby="dropdown-button"
               >
-                {categories.map((category,index) => (
+                {categories.map((category, index) => (
                   <>
                     <li key={index} onClick={() => setSelectCategory(category)}>
                       <button

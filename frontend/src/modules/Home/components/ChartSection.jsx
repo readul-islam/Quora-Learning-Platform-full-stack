@@ -70,7 +70,7 @@ const ChartSection = () => {
             architecto dignissimos ab commodi ea?
           </h1>
           <div>
-            <PrimaryBtn style='text-white'>Try Now</PrimaryBtn>{' '}
+            <PrimaryBtn style="text-white">Try Now</PrimaryBtn>{' '}
           </div>
         </motion.div>
       </div>

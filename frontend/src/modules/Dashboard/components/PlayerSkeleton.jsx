@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PlayerSkeleton = ({style}) => {
+const PlayerSkeleton = ({ style }) => {
   return (
     <>
       <div

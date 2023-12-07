@@ -30,7 +30,9 @@ const CourseContent = ({
           <p className=" md:text-md text-sm">
             23 sections • 156 lectures • 22h 13m total length
           </p>
-          <p className="md:text-md text-sm font-semibold ">Expand all section</p>
+          <p className="md:text-md text-sm font-semibold ">
+            Expand all section
+          </p>
         </div>
       </div>
       <CustomAccordion syllabus={syllabus} />
@@ -46,13 +48,11 @@ const CourseContent = ({
       <div className="my-6 ">
         <h3 className="text-xl font-semibold mb-2">Requirements</h3>
         {!isEmpty(requirements) &&
-          requirements.map((requirement,index) => (
-          
-              <div key={index} className=" px-4 mb-3 flex items-center gap-2">
-                <div className="h-2 w-2 rounded-full bg-black" />
-                <p>{requirement}</p>
-              </div>
-          
+          requirements.map((requirement, index) => (
+            <div key={index} className=" px-4 mb-3 flex items-center gap-2">
+              <div className="h-2 w-2 rounded-full bg-black" />
+              <p>{requirement}</p>
+            </div>
           ))}
       </div>
 

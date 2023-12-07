@@ -1,6 +1,4 @@
-
-
-const PlayerContentSidebarSkeleton = ({style}) => {
+const PlayerContentSidebarSkeleton = ({ style }) => {
   return (
     <>
       <div
