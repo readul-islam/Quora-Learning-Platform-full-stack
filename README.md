@@ -123,3 +123,5 @@ tsc -w
 
     store/   # For state Management (redux config and slice)
 ```
+## Extension-link:Cors Unblock
+https://chromewebstore.google.com/detail/cors-unblock/lfhmikememgdcahcdlaciloancbhjino
