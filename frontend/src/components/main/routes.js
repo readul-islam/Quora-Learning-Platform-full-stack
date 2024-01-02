@@ -4,6 +4,8 @@ import CourseList from '../../modules/Courses/pages/CourseList';
 import ContentPlayer from '../../modules/Dashboard/pages/ContentPlayer.jsx';
 import Dashboard from '../../modules/Dashboard/pages/Dashboard';
 import Home from '../../modules/Home/pages/Home';
+import Profile from '../../modules/Profile/pages/Profile';
+import Pricing from '../../modules/Pricing/pages/Pricing';
 
 // const Dashboard = lazy(() => import("../../modules/Dashboard/pages/Dashboard"));
 
@@ -11,6 +13,8 @@ const routes = [
   { id: uuidv4(), path: '/', component: Home },
   { id: uuidv4(), path: '/home', component: Home },
   { id: uuidv4(), path: '/courses', component: CourseList },
+  { id: uuidv4(), path: '/profile', component: Profile },
+  { id: uuidv4(), path: '/pricing', component: Pricing },
   {
     id: uuidv4(),
     path: '/course/:courseName/:courseId',

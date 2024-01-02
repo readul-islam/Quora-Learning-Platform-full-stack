@@ -21,10 +21,10 @@ const CourseList = () => {
 
   return (
     <>
-      <div className="px-12 py-6 ">
+      <div className=" max-w-7xl mx-auto   py-6 ">
         <SearchBar setCourses={setCourses} />
         <p className="font-semibold text-xl mt-4 ">Courses</p>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3  xl:grid-cols-5  gap-x-10 content-center gap-y-8 mt-4  ">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3  xl:grid-cols-4  gap-x-10 content-center gap-y-8 mt-4  ">
           {!isEmpty(courses) &&
             courses.map((course, index) => (
               <>

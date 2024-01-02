@@ -10,7 +10,10 @@ import Cart from './Cart';
 const Navbar = () => {
   let navigate = useNavigate();
   const dispatch = useDispatch();
-  const {authentication:{ isLoggedIn}, cart:{cartItems,cartTotalAmount,cartTotalQuantity} } = useSelector((state) => state);
+  const {
+    authentication: { isLoggedIn },
+    cart: { cartItems, cartTotalAmount, cartTotalQuantity },
+  } = useSelector((state) => state);
 
   const logOutHandler = () => {
     dispatch(logOut());
@@ -33,8 +36,8 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="  bg-gradient-to-tr from-neutral to-accent ">
-      <div className="navbar  max-w-7xl xl:max-w-full px-0 xl:px-10 mx-auto  ">
+    <div className=" sticky top-0 z-10  w-full  bg-gradient-to-tr from-neutral to-accent ">
+      <div className="navbar max-w-7xl  mx-auto  ">
         <div className="navbar-start">
           <div className="dropdown z-10">
             <label tabIndex="0" className="btn btn-ghost lg:hidden">
@@ -71,7 +74,7 @@ const Navbar = () => {
           <ul className="menu menu-horizontal p-0">{menus}</ul>
         </div>
         <div className="navbar-end ">
-          <Cart/>
+          {!isLoggedIn &&<Cart />}
           {!isLoggedIn ? (
             <Link to="/register">
               <PrimaryBtn style="text-white ">Sign UP</PrimaryBtn>{' '}
@@ -79,7 +82,7 @@ const Navbar = () => {
           ) : (
             <>
               <div className="flex items-center ">
-               <Cart/>
+                <Cart />
                 <div className="dropdown dropdown-end z-10">
                   <label
                     tabIndex="0"
@@ -93,12 +96,15 @@ const Navbar = () => {
                     tabIndex="0"
                     className="menu  menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
                   >
+                    <Link to="/profile">
                     <li>
                       <a className="justify-between">
                         Profile
                         <span className="badge">New</span>
                       </a>
                     </li>
+                    
+                    </Link>
                     <li>
                       <a href="/dashboard">Dashboard</a>
                     </li>

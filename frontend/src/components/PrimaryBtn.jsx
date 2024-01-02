@@ -6,7 +6,7 @@ const PrimaryBtn = ({ onClickHandler, style, children, ...others }) => {
     <button
       {...others}
       onClick={onClickHandler}
-      className={`btn ${style} bg-secondary  !py-1.5`}
+      className={` ${style} bg-secondary !py-1.5 btn `}
     >
       {children}
     </button>
