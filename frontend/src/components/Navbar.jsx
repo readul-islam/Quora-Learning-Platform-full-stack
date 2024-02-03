@@ -36,7 +36,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className=" sticky top-0 z-10  w-full  bg-gradient-to-tr from-neutral to-accent ">
+    <div className=" sticky top-0 z-10 pr-1 sm:pr-5  sm:pl-3 w-full  bg-gradient-to-tr from-neutral to-accent ">
       <div className="navbar max-w-7xl  mx-auto  ">
         <div className="navbar-start">
           <div className="dropdown z-10">

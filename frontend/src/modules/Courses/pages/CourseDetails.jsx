@@ -10,13 +10,13 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { getCourseById, isEnrolled, userEnrollInCourse } from '../api';
 import CourseContent from '../components/CourseContent';
 
+import toast from 'react-hot-toast';
 import ReactPlayer from 'react-player';
 import { useDispatch, useSelector } from 'react-redux';
 import PrimaryBtn from '../../../components/PrimaryBtn';
+import { addToCart } from '../../../store/cartSlice';
 import CourseHeaderInfo from '../components/CourseHeaderInfo';
 import Skeleton from '../components/Skeleton';
-import toast from 'react-hot-toast';
-import { addToCart } from '../../../store/cartSlice';
 
 const Course = () => {
   const [courseDetails, setCourseDetails] = useState({});
@@ -130,13 +130,13 @@ const Course = () => {
     <>
       {courseDetails.hasOwnProperty('name') ? (
         <>
-          <div className="lg:bg-gray-800">
-            <div className="max-w-6xl mx-auto lg:relative  py-10 px-2">
+          <div className="lg:bg-gray-800 ">
+            <div className="max-w-7xl mx-auto lg:relative  lg:py-10 px-3 sm:px-5 xl:px-0">
               <CourseHeaderInfo
-                style="hidden lg:block"
+                style="hidden lg:block "
                 courseDetails={courseDetails}
               />
-              <div className="card lg:z-50   bg-white lg:shadow-xl lg:min-h-[500px] lg:absolute lg:w-96  cursor-pointer lg:top-10 lg:right-2">
+              <div className="card    bg-white lg:shadow-xl lg:min-h-[500px] lg:absolute lg:w-96  cursor-pointer lg:top-10 lg:right-2">
                 {!runVideo && (
                   <figure className={`relative `}>
                     <img src={courseDetails.thumbnail} alt="car!" />
@@ -222,7 +222,7 @@ const Course = () => {
               </div>
             </div>
           </div>
-          <div className="max-w-6xl mx-auto lg:mt-16 px-2">
+          <div className="max-w-7xl mx-auto lg:mt-16 px-4 xl:px-0 ">
             <div className="max-w-2xl">
               <CourseContent
                 setSyllabusMoreSection={setSyllabusMoreSection}

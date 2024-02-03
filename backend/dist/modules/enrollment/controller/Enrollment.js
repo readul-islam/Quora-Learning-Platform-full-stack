@@ -13,6 +13,7 @@ const middleware_1 = require("../../../middleware");
 const utils_1 = require("../../../utils");
 const service_1 = require("../service");
 class EnrollmentController {
+    // user enrolling a new course
     userEnrollInCourse(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -29,6 +30,7 @@ class EnrollmentController {
             }
         });
     }
+    // get all enrolled course by user id
     getEnrolledCourseByUserId(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -40,6 +42,7 @@ class EnrollmentController {
             }
         });
     }
+    // check is user already enrolled in this course or not
     isEnrolled(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -57,4 +60,4 @@ class EnrollmentController {
         });
     }
 }
-exports.default = new EnrollmentController;
+exports.default = new EnrollmentController();

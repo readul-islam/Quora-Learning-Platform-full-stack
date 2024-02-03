@@ -44,6 +44,7 @@ class CourseController implements TCourseController {
   // get all courses
   async getCourses(req: Request, res: Response, next: NextFunction) {
     try {
+     
       const course = await getCourses();
       SuccessResponse(res, course, "Course fetched successfully");
     } catch (error) {}

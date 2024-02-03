@@ -3,7 +3,7 @@ import React from 'react';
 const CourseHeaderInfo = ({ courseDetails, style }) => {
   return (
     <>
-      <div className={`text-white ${style}  max-w-2xl space-y-3`}>
+      <div className={`text-white ${style} max-w-2xl space-y-3`}>
         <p>{`Development > Programming Languages > Python `}</p>
 
         <h3 className="text-4xl font-semibold">{courseDetails.name}</h3>

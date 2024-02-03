@@ -10,6 +10,8 @@ const routes_3 = __importDefault(require("./modules/enrollment/routes"));
 const appRouter = express_1.default.Router();
 // user routes 
 appRouter.use(routes_1.default);
+// course routes
 appRouter.use(routes_2.default);
+// enrollment routes
 appRouter.use(routes_3.default);
 exports.default = appRouter;

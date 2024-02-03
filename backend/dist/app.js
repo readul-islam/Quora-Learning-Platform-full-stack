@@ -8,11 +8,13 @@ const express_1 = __importDefault(require("express"));
 const db_1 = __importDefault(require("./config/db"));
 const routes_1 = __importDefault(require("./routes"));
 const app = (0, express_1.default)();
-const corsOpts = {
-    origin: ["http://localhost:5174/", "*"],
-};
 // app parser
-app.use((0, cors_1.default)(corsOpts));
+// app.use(cors());
+const options = {
+    origin: ["https://quora-frontend-kohl.vercel.app"],
+    credentials: true,
+};
+app.use((0, cors_1.default)(options));
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 // db connection

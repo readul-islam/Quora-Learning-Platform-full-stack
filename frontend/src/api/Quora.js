@@ -2,18 +2,24 @@ import axios from 'axios';
 import store from '../store';
 import { logIn } from '../store/authenticationSlice';
 
+
+/*   // 'https://quora-backend-dl6q.onrender.com',
+  // baseURL: 'http://localhost:5000', */
 const quora = axios.create({
-  baseURL: 'https://quora-backend-dl6q.onrender.com',
-  // baseURL: 'http://localhost:5000',
+  baseURL: "https://quora-backend-omega.vercel.app",
+  
 
   withCredentials: true,
+
 });
-// set token from our state
+
+
 quora.interceptors.request.use(
   (config) => {
     const token = store.getState().authentication.token;
     if (token) {
       config.headers['x-access-token'] = token;
+      config.headers['Content-Type'] = 'application/json';
     }
     return config;
   },

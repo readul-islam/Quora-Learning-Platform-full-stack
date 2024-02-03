@@ -1,7 +1,7 @@
-import { NextFunction, Request } from "express";
+
 import uploadVideo from "../../../hooks/uploadVideo";
 import Course from "../../../models/course";
-
+import { NextFunction, Request, Response } from "express";
 const createNewCourse = async (req: Request, next: NextFunction) => {
   //   const uploadUrl = await uploadVideo(req, next);
   // console.log(uploadUrl)
@@ -18,6 +18,7 @@ const getCourse = async (query: { courseId: string }) => {
 };
 
 const getCourses = async () => {
+ 
   return await Course.find();
 };
 

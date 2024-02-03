@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const common_handler_1 = require("../../../utils/common.handler");
 const service_1 = require("../service");
 class CourseController {
+    // create a new course
     createNewCourse(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -28,6 +29,7 @@ class CourseController {
             }
         });
     }
+    // get one course by courseId
     getCourse(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -44,6 +46,7 @@ class CourseController {
             }
         });
     }
+    // get all courses
     getCourses(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -53,6 +56,7 @@ class CourseController {
             catch (error) { }
         });
     }
+    // upload single video for course syllabus
     uploadCourseSyllabusVideo(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -64,6 +68,7 @@ class CourseController {
             }
         });
     }
+    // filter on courses
     searchCourses(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
