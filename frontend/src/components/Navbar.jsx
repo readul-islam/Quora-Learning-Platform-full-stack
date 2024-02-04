@@ -11,9 +11,9 @@ const Navbar = () => {
   let navigate = useNavigate();
   const dispatch = useDispatch();
   const {
-    authentication: { isLoggedIn },
-    cart: { cartItems, cartTotalAmount, cartTotalQuantity },
-  } = useSelector((state) => state);
+    isLoggedIn ,
+   
+  } = useSelector((state) => state.authentication);
 
   const logOutHandler = () => {
     dispatch(logOut());
@@ -98,21 +98,21 @@ const Navbar = () => {
                   >
                     <Link to="/profile">
                     <li>
-                      <a className="justify-between">
+                      <p className="justify-between">
                         Profile
                         <span className="badge">New</span>
-                      </a>
+                      </p>
                     </li>
                     
                     </Link>
                     <li>
-                      <a href="/dashboard">Dashboard</a>
+                      <p href="/dashboard">Dashboard</p>
                     </li>
                     <li>
-                      <a>Settings</a>
+                      <p>Settings</p>
                     </li>
                     <li onClick={logOutHandler}>
-                      <a>Logout</a>
+                      <p>Logout</p>
                     </li>
                   </ul>
                 </div>

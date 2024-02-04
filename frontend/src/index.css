@@ -64,3 +64,20 @@ html {
   .react-player > div {
     position: absolute; 
   } */
+
+
+  .PhoneInputInput{
+    background-color: transparent;
+    border-left: 1px solid #d1d5db;
+    padding-left: 2px;
+    outline: none !important;
+    
+  }
+
+.PhoneInput{
+border: 1px solid #d1d5db;
+padding: 8px;
+
+border-radius: 8px;
+
+ }

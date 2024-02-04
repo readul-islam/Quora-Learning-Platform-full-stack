@@ -1,157 +1,148 @@
-import React from 'react';
+import { Form, Formik } from 'formik';
+import React, { useId, useState } from 'react';
+import PhoneInput from 'react-phone-number-input';
+import 'react-phone-number-input/style.css';
 import PrimaryBtn from '../../../components/PrimaryBtn';
+import Input from '../../../components/UI/Input';
+import useInitialData from '../../../hooks/useInitialData';
+import { INITIAL_DATA } from '../constants';
+import PasswordChangeForm from './PasswordChangeForm';
+const ProfileForm = ({ initialData }) => {
+  const [value, setValue] = useState();
 
-const ProfileForm = () => {
-  const onSubmitHandler = (e)=>{
-    e.preventDefault();
-    console.log(e)
-  }
+
+  const { isDataEmpty, initialValues } = useInitialData({
+    initialData,
+    INITIAL_DATA,
+  });
+  const handleFormSubmit = (values) => {
+
+
+    console.log(values);
+  };
+  const formId = useId()
   return (
     <div className=" border-t pt-4 my-4">
-      <form onSubmit={onSubmitHandler}>
-        <div class="grid gap-6 mb-6 md:grid-cols-2">
-          <div>
-            <label
-              for="first_name"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
-              First name
-            </label>
-            <input
-              type="text"
-              id="first_name"
-              class="bg-transparent border border-gray-300 outline-none text-black-300 text-sm rounded-lg focus:ring-0 block w-full p-2.5  "
-              placeholder="John"
-              required
-            />
-          </div>
-          <div>
-            <label
-              for="last_name"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
-              Last name
-            </label>
-            <input
-              type="text"
-              id="last_name"
-              class="bg-transparent border border-gray-300 outline-none text-black-300 text-sm rounded-lg focus:ring-0 block w-full p-2.5  "
-              placeholder="Doe"
-              required
-            />
-          </div>
-          <div>
-            <label
-              for="company"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
-              Company
-            </label>
-            <input
-              type="text"
-              id="company"
-              class="bg-transparent border border-gray-300 outline-none text-black-300 text-sm rounded-lg focus:ring-0 block w-full p-2.5  "
-              placeholder="Flowbite"
-              required
-            />
-          </div>
-          <div>
-            <label
-              for="phone"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
-              Phone number
-            </label>
-            <input
-              type="text"
-              id="phone"
-              class="bg-transparent border border-gray-300 outline-none text-black-300 text-sm rounded-lg focus:ring-0 block w-full p-2.5  "
-              placeholder="123-45-678"
-             // pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
-              required
-            />
-          </div>
-          <div>
-            <label
-              for="website"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
-              Website URL
-            </label>
-            <input
-              type="url"
-              id="website"
-              class="bg-transparent border border-gray-300 outline-none text-black-300 text-sm rounded-lg focus:ring-0 block w-full p-2.5  "
-              placeholder="flowbite.com"
-              required
-            />
-          </div>
-          <div>
-            <label
-              for="visitors"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
-              Unique visitors (per month)
-            </label>
-            <input
-              type="number"
-              id="visitors"
-              class="bg-transparent border border-gray-300 outline-none text-black-300 text-sm rounded-lg focus:ring-0 block w-full p-2.5  "
-              placeholder=""
-              required
-            />
-          </div>
-        </div>
-        <div class="mb-6">
-          <label
-            for="email"
-            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-          >
-            Email address
-          </label>
-          <input
-            type="email"
-            id="email"
-            class="bg-transparent border border-gray-300 outline-none text-black-300 text-sm rounded-lg focus:ring-0 block w-full p-2.5  "
-            placeholder="john.doe@company.com"
-            required
-          />
-        </div>
-        {/* <div class="mb-6">
-          <label
-            for="password"
-            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-          >
-            Password
-          </label>
-          <input
-            type="password"
-            id="password"
-            class="bg-transparent border border-gray-300 outline-none text-black-300 text-sm rounded-lg focus:ring-0 block w-full p-2.5  "
-            placeholder="•••••••••"
-            required
-          />
-        </div>
-        <div class="mb-6">
-          <label
-            for="confirm_password"
-            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-          >
-            Confirm password
-          </label>
-          <input
-            type="password"
-            id="confirm_password"
-            class="bg-transparent border border-gray-300 outline-none text-black-300 text-sm rounded-lg focus:ring-0 block w-full p-2.5  "
-            placeholder="•••••••••"
-            required
-          />
-        </div> */}
+      <div>
+        <Formik
+          initialValues={initialValues}
+          onSubmit={handleFormSubmit}
+          enableReinitialize={isDataEmpty}
+        >
+          {({ handleSubmit, setFieldValue }) => (
+            <Form id={formId} onSubmit={handleSubmit}>
+              <div className="grid gap-x-6 gap-y-3  md:grid-cols-2">
+                <div>
 
-        <PrimaryBtn style={'text-white hover:text-black'}>
-          Save Changes
-        </PrimaryBtn>
-      </form>
+                  <Input
+                  
+                  type="text"
+                 
+                  name="firstName"
+                  placeholder="John"
+                  label={"First name"}
+                  />
+                  
+                </div>
+                <div>
+                <Input
+                  
+                  type="text"
+                 
+                  name="lastName"
+                  placeholder="Doe"
+                  label={"Last name"}
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="gender"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    Gender
+                  </label>
+                  <select
+                  onChange={(e)=> setFieldValue("gender", e.target.value)}
+                    name="gender"
+                    as="select"
+                    className="bg-transparent border border-gray-300 outline-none text-black-300 text-sm rounded-lg focus:ring-0 block w-full p-2.5 "
+                  >
+                    <option value="">Select</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </select>
+                </div>
+                <div>
+                <Input
+                  
+                  type="number"
+                 
+                  name="age"
+                  placeholder="ex:20"
+                  label={"Age"}
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="phone"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    Phone number
+                  </label>
+
+                  <PhoneInput
+                    name="phone"
+                    id="phone"
+                    placeholder="Enter phone number"
+                    value={value}
+                    onChange={(e)=>{setValue(e), setFieldValue("phone", e)}}
+                  />
+
+                 
+                </div>
+                <div>
+                <Input
+                  
+                  type="text"
+                 
+                  name="university"
+                  placeholder="ex: X University"
+                  label={"University"}
+                  />
+                </div>
+                <div className="mb-4">
+                 <Input
+                  
+                  type="email"
+                 
+                  name="email"
+                  placeholder="ex: example@gmail.com"
+                  label={"Email"}
+                  />
+              </div>
+                <div className="mb-4">
+                <Input
+                  
+                  type="url"
+                 
+                  name="portfolio"
+                  placeholder="http//:example.com"
+                  label={"Portfolio"}
+                  />
+              </div>
+              </div>
+            
+
+              <PrimaryBtn type="submit" style={'text-white hover:text-black'}>
+                Save Changes
+              </PrimaryBtn>
+            </Form>
+          )}
+        </Formik>
+      </div>
+
+
+<PasswordChangeForm/>
 
       <div className="border-t mt-4">
         <h3 className="my-3 text-xl font-semibold ">Delete Account</h3>

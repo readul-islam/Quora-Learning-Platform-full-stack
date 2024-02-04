@@ -1,13 +1,13 @@
 import { useFormik } from 'formik';
 import React from 'react';
+import toast from 'react-hot-toast';
 import { FcGoogle } from 'react-icons/fc';
+import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import { logIn } from '../../../store/authenticationSlice';
+import { registerApi } from '../api/auth';
 import { SIGN_UP_INITIAL_VALUES } from '../constants';
 import { SIGN_IN_FORM_VALIDATE_SCHEMA } from '../schema';
-import { registerApi } from '../api/auth';
-import { logIn } from '../../../store/authenticationSlice';
-import { useDispatch } from 'react-redux';
-import toast from 'react-hot-toast';
 
 const Register = () => {
   const navigate = useNavigate();
@@ -68,7 +68,7 @@ const Register = () => {
                 </h5>
                 <div>
                   <label
-                    for="email"
+                    htmlFor="email"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                   >
                     Your email
@@ -90,7 +90,7 @@ const Register = () => {
                 </div>
                 <div>
                   <label
-                    for="password"
+                    htmlFor="password"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                   >
                     password
@@ -112,7 +112,7 @@ const Register = () => {
                 </div>
                 <div>
                   <label
-                    for="password"
+                    htmlFor="password"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                   >
                     Confirm password
@@ -146,7 +146,7 @@ const Register = () => {
                       />
                     </div>
                     <label
-                      for="remember"
+                      htmlFor="remember"
                       className="ml-2 text-sm font-medium cursor-pointer text-gray-900 dark:text-gray-300"
                     >
                       I agree to the{' '}

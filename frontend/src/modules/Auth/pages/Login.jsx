@@ -1,12 +1,12 @@
 import { useFormik } from 'formik';
 import React from 'react';
-import { FcGoogle } from 'react-icons/fc';
-import { Link, useNavigate } from 'react-router-dom';
-import { SIGN_IN_INITIAL_VALUES } from '../constants';
-import { logInApi } from '../api/auth';
-import { logIn } from '../../../store/authenticationSlice';
-import { useDispatch } from 'react-redux';
 import toast from 'react-hot-toast';
+import { FcGoogle } from 'react-icons/fc';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { logIn } from '../../../store/authenticationSlice';
+import { logInApi } from '../api/auth';
+import { SIGN_IN_INITIAL_VALUES } from '../constants';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -71,7 +71,7 @@ const Login = () => {
                 </h5>
                 <div>
                   <label
-                    for="email"
+                    htmlFor="email"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                   >
                     Your email
@@ -88,7 +88,7 @@ const Login = () => {
                 </div>
                 <div>
                   <label
-                    for="password"
+                    htmlFor="password"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                   >
                     Your password
@@ -116,7 +116,7 @@ const Login = () => {
                       />
                     </div>
                     <label
-                      for="remember"
+                      htmlFor="remember"
                       className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                     >
                       Remember me
